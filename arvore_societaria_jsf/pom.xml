@@ -27,12 +27,14 @@
 	</build>
 	
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.10.Final</version>
 			<scope>compile</scope>
 		</dependency>
+		
 	</dependencies>
 	
 </project>
