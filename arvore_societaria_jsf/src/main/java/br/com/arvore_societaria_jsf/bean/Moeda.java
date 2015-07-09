@@ -11,6 +11,7 @@ public class Moeda {
 	private Integer id;
 	private String nome;
 	private String pais;
+	
 	public Integer getId() {
 		return id;
 	}

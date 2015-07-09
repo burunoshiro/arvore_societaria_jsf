@@ -8,12 +8,9 @@ xmlns:h="http://java.sun.com/jsf/html" >
 <h:body>
 	<h:form>
 		<h:panelGrid columns="2">
-			Marca: <h:inputText />
-			Modelo: <h:inputText />
-			Ano de Fabricação: <h:inputText />
-			Ano do Modelo: <h:inputText />
-			Observações: <h:inputTextarea />
-			<h:commandButton value="Salvar" />
+			Nome: <h:inputText value="#{moedaBean.moeda.nome}"/>
+			País: <h:inputText value="#{moedaBean.moeda.pais}"/>
+			<h:commandButton value="Salvar" action="#{moedaBean.salva}"/>
 		</h:panelGrid>
 	</h:form>
 </h:body>
