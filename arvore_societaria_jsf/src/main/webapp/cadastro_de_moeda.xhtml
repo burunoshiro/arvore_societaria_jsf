@@ -3,6 +3,7 @@
 xmlns:h="http://java.sun.com/jsf/html" >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
 <title>Insert title here</title>
 </head>
 <h:body>
@@ -10,7 +11,7 @@ xmlns:h="http://java.sun.com/jsf/html" >
 		<h:panelGrid columns="2">
 			Nome: <h:inputText value="#{moedaBean.moeda.nome}"/>
 			País: <h:inputText value="#{moedaBean.moeda.pais}"/>
-			<h:commandButton value="Salvar" action="#{moedaBean.salva}"/>
+			<h:commandButton class="btn-success" value="Salvar" action="#{moedaBean.salva}"/>
 		</h:panelGrid>
 	</h:form>
 </h:body>
