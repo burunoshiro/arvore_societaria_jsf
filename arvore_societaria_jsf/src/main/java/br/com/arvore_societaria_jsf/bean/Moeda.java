@@ -1,4 +1,4 @@
-package br.com.arvore_societaria_jsf;
+package br.com.arvore_societaria_jsf.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ public class Moeda {
 	private Integer id;
 	private String nome;
 	private String pais;
+	
 	public Integer getId() {
 		return id;
 	}

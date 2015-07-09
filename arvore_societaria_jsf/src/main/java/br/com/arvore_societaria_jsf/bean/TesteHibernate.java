@@ -1,4 +1,4 @@
-package br.com.arvore_societaria_jsf;
+package br.com.arvore_societaria_jsf.bean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
