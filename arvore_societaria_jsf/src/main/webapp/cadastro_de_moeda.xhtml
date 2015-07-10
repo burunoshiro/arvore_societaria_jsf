@@ -1,18 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:jsf="http://java.sun.com/jsf"
 xmlns:h="http://java.sun.com/jsf/html" >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
-<title>Insert title here</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+<title>Cadastro de Moeda - Árvore Societária</title>
 </head>
 <h:body>
-	<h:form>
-		<h:panelGrid columns="2">
-			Nome: <h:inputText value="#{moedaBean.moeda.nome}"/>
-			País: <h:inputText value="#{moedaBean.moeda.pais}"/>
-			<h:commandButton class="btn-success" value="Salvar" action="#{moedaBean.salva}"/>
-		</h:panelGrid>
+	<h:form class="form-inline">
+ 		<div class="form-group">
+			<label class="control-label col-sm-2" for="email">Nome:</label> 
+			<h:inputText class="form-control col-sm-2" value="#{moedaBean.moeda.nome}"/>
+			<label class="control-label col-sm-2" for="email">País:</label>
+			<h:inputText value="#{moedaBean.moeda.pais}"/>
+			<h:commandButton class="btn btn-success" value="Salvar" action="#{moedaBean.salva}"/>
+		</div>
 	</h:form>
 </h:body>
 </html>
