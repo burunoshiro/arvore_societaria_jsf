@@ -11,7 +11,14 @@ public class Moeda {
 	private Integer id;
 	private String nome;
 	private String pais;
+	private Boolean ativa;
 	
+	public Boolean getAtiva() {
+		return ativa;
+	}
+	public void setAtiva(Boolean ativa) {
+		this.ativa = ativa;
+	}
 	public Integer getId() {
 		return id;
 	}

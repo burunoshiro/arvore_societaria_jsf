@@ -1,38 +1,86 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:jsf="http://java.sun.com/jsf"
 	xmlns:h="http://java.sun.com/jsf/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+<script type="text/javascript"
+	src="http://dl.dropbox.com/u/40036711/Scripts/ddslick.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <title>Cadastro de Moeda - Árvore Societária</title>
+
+<style>
+.container {
+	margin-top: 50px;
+}
+</style>
+
+
 </head>
 <h:body>
-	<br />
-	<br />
-	<h:form class="form-horizontal">
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="email">Nome:</label>
-			<div class="col-sm-6">
-				<h:inputText class="form-control col-sm-2"
-					value="#{moedaBean.moeda.nome}" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="email">País:</label>
-			<div class="col-sm-6">
-				<h:inputText class="form-control col-sm-2"
-					value="#{moedaBean.moeda.pais}" />
-			</div>
-		</div>
-		<div class="form-group">
-		<div class="col-sm-6"></div>
-		<div class="col-sm-6">
-		
-			<h:commandButton class="btn btn-primary btn-lg" value="Salvar"
-				action="#{moedaBean.salva}" />
-		</div>
-		</div>
-	</h:form>
+	<div class="container">
+		<h:form class="form-horizontal">
+			<fieldset>
+				<legend>Cadastro de Moeda</legend>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Nome:</label>
+					<div class="col-sm-6">
+						<h:inputText class="form-control col-sm-2"
+							value="#{moedaBean.moeda.nome}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">País:</label>
+					<div class="col-sm-6">
+						<h:inputText class="form-control col-sm-2"
+							value="#{moedaBean.moeda.pais}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2">Situação:</label>
+					<div class="col-sm-2">
+						<select class="form-control col-sm-2">
+							<option>Ativa</option>
+							<option>Inativa</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-7">
+
+						<h:commandButton class="btn btn-primary btn-md" value="Salvar"
+							action="#{moedaBean.salva}" />
+					</div>
+				</div>
+
+				<select id="teste">
+					<option value="0"
+						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
+						data-description="Description with Facebook">Facebook</option>
+					<option value="1"
+						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
+						data-description="Description with Twitter">Twitter</option>
+					<option value="2" selected="selected"
+						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
+						data-description="Description with LinkedIn">LinkedIn</option>
+					<option value="3"
+						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+						data-description="Description with Foursquare">Foursquare</option>
+				</select>
+			</fieldset>
+		</h:form>
+	</div>
 </h:body>
+<script type="text/javascript">
+	
+		$('#teste').ddslick({
+			selectText: "Selecione um país"
+			onSelected : function(selectedData) {
+				//callback function: do something with selectedData;
+			}
+		});
+
+</script>
 </html>
