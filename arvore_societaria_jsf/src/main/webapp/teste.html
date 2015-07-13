@@ -4,13 +4,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://dl.dropbox.com/u/40036711/Scripts/ddslick.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.ddslick.js"></script>
+
+<script>
+	
+	$(function() {
+		
+		$('#btn-teste').on('click', function() {
+			$('h1').toggle();			
+		});
+		
+	});
+	
+</script>
+
 </head>
 <body>
 	<h1>Teste</h1>
 	
-	 <select id="select">
+	<button id="btn-teste">teste</button>
+	
+	 <select id="teste">
         <option value="0" data-imagesrc="http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
             data-description="Description with Facebook">Facebook</option>
         <option value="1" data-imagesrc="http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
@@ -22,10 +37,12 @@
     </select>
 </body>
 <script>
-$('#select').ddslick({
+
+$('#teste').ddslick({
     onSelected: function(selectedData){
         //callback function: do something with selectedData;
     }   
 });
+
 </script>
 </html>
