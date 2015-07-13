@@ -5,10 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-<script type="text/javascript"
-	src="http://dl.dropbox.com/u/40036711/Scripts/ddslick.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script>
+<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
 <title>Cadastro de Moeda - Árvore Societária</title>
 
 <style>
@@ -55,32 +53,10 @@
 					</div>
 				</div>
 
-				<select id="teste">
-					<option value="0"
-						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
-						data-description="Description with Facebook">Facebook</option>
-					<option value="1"
-						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
-						data-description="Description with Twitter">Twitter</option>
-					<option value="2" selected="selected"
-						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
-						data-description="Description with LinkedIn">LinkedIn</option>
-					<option value="3"
-						data-imagesrc="http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
-						data-description="Description with Foursquare">Foursquare</option>
-				</select>
+
 			</fieldset>
 		</h:form>
 	</div>
 </h:body>
-<script type="text/javascript">
-	
-		$('#teste').ddslick({
-			selectText: "Selecione um país"
-			onSelected : function(selectedData) {
-				//callback function: do something with selectedData;
-			}
-		});
 
-</script>
 </html>
