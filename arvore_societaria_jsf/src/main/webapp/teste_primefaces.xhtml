@@ -4,13 +4,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-	<!-- <script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script> -->
-	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
-	<title>Cadastro de Moeda - Árvore Societária</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+<!-- 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link> -->
+<!-- <script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script> -->
+<title>Cadastro de Moeda - Árvore Societária</title>
 
-	<style>
+<style>
 .container {
 	margin-top: 50px;
 }
@@ -19,8 +18,8 @@
 
 </h:head>
 <h:body>
-	<div class="container">
-		<h:form class="form-horizontal">
+	<div>
+		<h:form>
 			<fieldset>
 				<legend>Cadastro de Moeda</legend>
 				<div class="form-group">
@@ -45,7 +44,7 @@
 						<!-- 							<option>Inativa</option> -->
 						<!-- 						</select> -->
 
-						<p:selectOneMenu style="width:125px"
+						<p:selectOneMenu class="form-control col-sm-2"
 							value="#{moedaBean.moeda.ativa}">
 							<f:selectItem itemLabel="Ativa" itemValue="true" />
 							<f:selectItem itemLabel="Inativa" itemValue="false" />
@@ -64,9 +63,24 @@
 			</fieldset>
 		</h:form>
 
-
-
+		<h:form>
+			<p:selectOneMenu id="console" value="#{moedaBean.moeda.ativa}">
+				<f:selectItem itemLabel="Ativa" itemValue="true" />
+				<f:selectItem itemLabel="Inativa" itemValue="false" />
+			</p:selectOneMenu>
+		</h:form>
 	</div>
+	
+			<ul>
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown">Some Dropdown<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="#"><i class="icon-arrow-up"></i> Up</a></li>
+					<li><a href="#"><i class="icon-arrow-down"></i> Down</a></li>
+					<li><a href="#"><i class="icon-arrow-left"></i> Left</a></li>
+					<li><a href="#"><i class="icon-arrow-right"></i> Right</a></li>
+				</ul></li>
+		</ul>
 </h:body>
 
 </html>
