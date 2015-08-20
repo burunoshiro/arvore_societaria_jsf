@@ -5,14 +5,26 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+
+
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+	<script src="jquery/jquery.min.js"></script>
+
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-	<!-- <script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script> -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
 	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
+
 	<title>Cadastro de Moeda - Árvore Societária</title>
 
-	<style>
-.container {
-	margin-top: 50px;
+	<style type="text/css">
+#principal {
+	margin-top: 90px;
+}
+
+body {
+	padding-bottom: 70px;
 }
 </style>
 
@@ -20,48 +32,63 @@
 </h:head>
 <h:body>
 
-	<nav class="navbar navbar-default navbar-static-top">
-		<a class="navbar-brand" href="#">Árvore Societária</a>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Árvore societária</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Empresa <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cadastro de Empresa</a></li>
+							<li><a href="#">Busca de Empresas</a></li>
+						</ul></li>
+					<li><a href="#">Moeda</a></li>
+					<li><a href="#">Árvore</a></li>
+				</ul>
+			</div>
+		</div>
 	</nav>
 
-	<div class="container">
+
+	<div id="principal" class="container">
 		<h:form class="form-horizontal">
 			<fieldset>
 				<legend>Cadastro de Moeda</legend>
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nome:</label>
+					<label class="control-label col-sm-3">Nome:</label>
 					<div class="col-sm-6">
-						<h:inputText class="form-control col-sm-2"
+						<h:inputText class="form-control col-sm-6"
 							value="#{moedaBean.moeda.nome}" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">País:</label>
+					<label class="control-label col-sm-3">País:</label>
 					<div class="col-sm-6">
-						<h:inputText class="form-control col-sm-2"
-							value="#{moedaBean.moeda.pais}" />
+						<h:inputText class="form-control" value="#{moedaBean.moeda.pais}" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2">Situação:</label>
+					<label class="control-label col-sm-3">Situação:</label>
 					<div class="col-sm-2">
-						<!-- 						<select class="form-control col-sm-2"> -->
-						<!-- 							<option>Ativa</option> -->
-						<!-- 							<option>Inativa</option> -->
-						<!-- 						</select> -->
 
-						<h:selectOneMenu class="form-control col-sm-2" style="width:125px"
+						<h:selectOneMenu class="form-control col-sm-3" style="width:125px"
 							value="#{moedaBean.moeda.ativa}">
 							<f:selectItem itemLabel="Ativa" itemValue="true" />
 							<f:selectItem itemLabel="Inativa" itemValue="false" />
 						</h:selectOneMenu>
+
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-7">
+					<div class="col-sm-offset-7 col-sm-1">
 
-						<h:commandButton class="btn btn-primary btn-md" value="Salvar"
-							action="#{moedaBean.salva}" />
+						<h:commandButton class="btn btn-primary btn-md pull-right"
+							value="Salvar" action="#{moedaBean.salva}" />
 					</div>
 				</div>
 

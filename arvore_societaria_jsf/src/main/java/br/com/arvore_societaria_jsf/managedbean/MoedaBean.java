@@ -1,5 +1,7 @@
 package br.com.arvore_societaria_jsf.managedbean;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 
@@ -31,9 +33,13 @@ public class MoedaBean {
 		
 		em.close();
 		
-		System.out.println("Moeda salva");
+		System.out.println("Moeda salva. Nome: " + moeda.getNome() + "  País: " + moeda.getPais()  );
 		
 		moeda = new Moeda();
+	}
+	
+	public ArrayList<Moeda> busca(Moeda moeda) {
+		 return null;
 	}
 	
 }
