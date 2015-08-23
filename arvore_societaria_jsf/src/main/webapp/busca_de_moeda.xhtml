@@ -40,7 +40,7 @@
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Empresa <span class="caret"></span></a>
@@ -48,7 +48,7 @@
 							<li><a href="">Cadastro de Empresa</a></li>
 							<li><a href="#">Busca de Empresas</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown active" ><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Moeda <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -64,48 +64,14 @@
 	</nav>
 <!-- 	Fim Menu Principal -->
 
-<!-- Form de cadastro de moeda -->
+<!-- Tabela de moedas -->
+
 	<div id="principal" class="container">
-		<h:form class="form-horizontal">
-			<fieldset>
-				<legend>Cadastro de Moeda</legend>
-				<div class="form-group">
-					<label class="control-label col-sm-3">Nome:</label>
-					<div class="col-sm-6">
-						<h:inputText class="form-control col-sm-6"
-							value="#{moedaBean.moeda.nome}" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">País:</label>
-					<div class="col-sm-6">
-						<h:inputText class="form-control" value="#{moedaBean.moeda.pais}" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">Situação:</label>
-					<div class="col-sm-2">
-
-						<h:selectOneMenu class="form-control col-sm-3" style="width:125px"
-							value="#{moedaBean.moeda.ativa}">
-							<f:selectItem itemLabel="Ativa" itemValue="true" />
-							<f:selectItem itemLabel="Inativa" itemValue="false" />
-						</h:selectOneMenu>
-
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-8 col-sm-1">
-
-						<h:commandButton class="btn btn-primary btn-md pull-right"
-							value="Salvar" action="#{moedaBean.salva}" />
-					</div>
-				</div>
-
-
-			</fieldset>
-		</h:form>
-<!-- Fim do Form de cadastro de moeda -->
+	
+	
+	</div>
+		
+<!-- Fim fim tabela de moeda -->
 
 
 	</div>
