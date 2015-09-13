@@ -1,9 +1,11 @@
 package br.com.arvore_societaria_jsf.managedbean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
@@ -12,6 +14,7 @@ import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
+	private List<Moeda> listaMoedas = null;
 	
 	public Moeda getMoeda() {
 		return moeda;
@@ -38,8 +41,13 @@ public class MoedaBean {
 		moeda = new Moeda();
 	}
 	
-	public ArrayList<Moeda> busca(Moeda moeda) {
-		 return null;
+	public List<Moeda> busca(Moeda moeda) {
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		Query query = em.createQuery("select m from moeda m");
+		
+		listaMoedas = query.getResultList();
+		return listaMoedas;
 	}
 	
 }
