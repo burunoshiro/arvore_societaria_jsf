@@ -68,12 +68,16 @@
 
 	<div id="principal" class="container">
 	<form>
-		<fieldset>Busca de Moeda</fieldset>
+		<fieldset>
+		<legend>Busca de Moeda</legend>
 		
-		<h:dataTable>
-		
+		<h:dataTable id="tabela_moeda" value="#{moedaBean.listaMoedas}" var="moeda">
+			<h:column>#{moeda.id}</h:column>
+			<h:column>#{moeda.nome}</h:column>
+			<h:column>#{moeda.pais}</h:column>
+			<h:column>#{moeda.ativa}</h:column>
 		</h:dataTable>
-		
+		</fieldset>
 	</form>
 	</div>
 		

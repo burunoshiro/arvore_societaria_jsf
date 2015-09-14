@@ -41,13 +41,18 @@ public class MoedaBean {
 		moeda = new Moeda();
 	}
 	
-	public List<Moeda> busca(Moeda moeda) {
+	public List<Moeda> getListaMoedas() {
 		
-		EntityManager em = JPAUtil.getEntityManager();
-		Query query = em.createQuery("select m from moeda m");
+		if(listaMoedas == null) {
+			EntityManager em = JPAUtil.getEntityManager();
+			Query query = em.createQuery("SELECT m FROM Moeda m", Moeda.class);
+			
+			listaMoedas = query.getResultList();
+			em.close();
+		}
 		
-		listaMoedas = query.getResultList();
 		return listaMoedas;
+	
 	}
 	
 }
