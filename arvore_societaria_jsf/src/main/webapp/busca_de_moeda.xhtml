@@ -86,6 +86,10 @@ body {
 					<h:column>
 						<f:facet name="header">situação</f:facet>
 			#{moeda.ativa}</h:column>
+					<h:column>
+						<f:facet name="header">ação</f:facet>
+						#{moedaBean.excluir(moeda)}
+					</h:column>
 				</h:dataTable>
 			</fieldset>
 		</form>

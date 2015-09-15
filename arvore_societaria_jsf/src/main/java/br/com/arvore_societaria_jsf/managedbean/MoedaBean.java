@@ -14,7 +14,7 @@ import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
-	private List<Moeda> listaMoedas = null;
+	private List<Moeda> listaMoedas;
 	
 	public Moeda getMoeda() {
 		return moeda;
@@ -52,6 +52,19 @@ public class MoedaBean {
 		}
 		
 		return listaMoedas;
+	
+	}
+	
+	public void excluir(Moeda moeda) {
+		
+		if(listaMoedas == null) {
+			EntityManager em = JPAUtil.getEntityManager();
+			Query query = em.createQuery("SELECT m FROM Moeda m", Moeda.class);
+			
+			listaMoedas = query.getResultList();
+			em.close();
+		}
+		
 	
 	}
 	
