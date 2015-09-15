@@ -68,7 +68,7 @@ body {
 	<!-- Tabela de moedas -->
 
 	<div id="principal" class="container">
-		<form>
+		<h:form>
 			<fieldset>
 				<legend>Busca de Moeda</legend>
 
@@ -88,11 +88,11 @@ body {
 			#{moeda.ativa}</h:column>
 					<h:column>
 						<f:facet name="header">ação</f:facet>
-						#{moedaBean.excluir(moeda)}
+						<h:commandLink action="#{moedaBean.excluir(moeda)}">excluir</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</fieldset>
-		</form>
+		</h:form>
 	</div>
 
 	<!-- Fim fim tabela de moeda -->

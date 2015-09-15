@@ -1,10 +1,10 @@
 package br.com.arvore_societaria_jsf.managedbean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import br.com.arvore_societaria_jsf.bean.Moeda;
@@ -57,14 +57,17 @@ public class MoedaBean {
 	
 	public void excluir(Moeda moeda) {
 		
-		if(listaMoedas == null) {
 			EntityManager em = JPAUtil.getEntityManager();
-			Query query = em.createQuery("SELECT m FROM Moeda m", Moeda.class);
+			EntityTransaction tr = em.getTransaction();
 			
-			listaMoedas = query.getResultList();
+			tr.begin();
+			
+			moeda = em.merge(moeda);
+			em.remove(moeda);
+			
+			tr.commit();
+			
 			em.close();
-		}
-		
 	
 	}
 	
