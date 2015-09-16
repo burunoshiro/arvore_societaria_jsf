@@ -1,8 +1,10 @@
 package br.com.arvore_societaria_jsf.bean;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Moeda {
@@ -13,6 +15,23 @@ public class Moeda {
 	private String pais;
 	private Boolean ativa;
 	
+	@Transient
+	private String situacao;
+	
+	public String getSituacao() {
+		
+		if(ativa) {
+			situacao = "ativa";
+		}
+		else {
+			situacao = "inativa";
+		}
+		
+		return situacao;
+	}
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
 	public Boolean getAtiva() {
 		return ativa;
 	}
