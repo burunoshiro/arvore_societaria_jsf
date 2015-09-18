@@ -15,7 +15,7 @@ public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
 	private List<Moeda> listaMoedas;
-	
+
 	public Moeda getMoeda() {
 		return moeda;
 	}
@@ -25,50 +25,52 @@ public class MoedaBean {
 	}
 
 	public void salva() {
-		
+
 		EntityManager em = JPAUtil.getEntityManager();
-		
+
 		em.getTransaction().begin();
-		
+
 		em.persist(moeda);
-		
+
 		em.getTransaction().commit();
-		
+
 		em.close();
-		
+
 		System.out.println("Moeda salva. Nome: " + moeda.getNome() + "  País: " + moeda.getPais()  );
-		
+
 		moeda = new Moeda();
 	}
-	
+
 	public List<Moeda> getListaMoedas() {
-		
+
 		if(listaMoedas == null) {
 			EntityManager em = JPAUtil.getEntityManager();
 			Query query = em.createQuery("SELECT m FROM Moeda m", Moeda.class);
-			
+
 			listaMoedas = query.getResultList();
 			em.close();
 		}
-		
+
 		return listaMoedas;
-	
+
 	}
-	
+
 	public void excluir(Moeda moeda) {
+
+		EntityManager em = JPAUtil.getEntityManager();
+		EntityTransaction tr = em.getTransaction();
+
+		tr.begin();
 		
-			EntityManager em = JPAUtil.getEntityManager();
-			EntityTransaction tr = em.getTransaction();
-			
-			tr.begin();
-			
-			moeda = em.merge(moeda);
-			em.remove(moeda);
-			
-			tr.commit();
-			
-			em.close();
-	
+		Moeda moedaBanco = em.merge(moeda);
+		em.remove(moedaBanco);
+
+		listaMoedas.remove(moeda);
+		
+		tr.commit();
+
+		em.close();
+
 	}
-	
+
 }
