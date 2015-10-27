@@ -2,10 +2,14 @@ package br.com.arvore_societaria_jsf.managedbean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+
+import com.sun.faces.config.FaceletsConfiguration;
 
 import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
@@ -15,6 +19,15 @@ public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
 	private List<Moeda> listaMoedas;
+	private String mensagem = "";
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 
 	public Moeda getMoeda() {
 		return moeda;
@@ -28,17 +41,28 @@ public class MoedaBean {
 
 		EntityManager em = JPAUtil.getEntityManager();
 
-		em.getTransaction().begin();
+		try {
+			
+			em.getTransaction().begin();
 
-		em.persist(moeda);
+			em.persist(moeda);
 
-		em.getTransaction().commit();
+			em.getTransaction().commit();
 
-		em.close();
+			em.close();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage("salvar", new FacesMessage("Erro ao tentar salvar moeda!"));
+		}
 
 		System.out.println("Moeda salva. Nome: " + moeda.getNome() + "  País: " + moeda.getPais()  );
-
+		
+		FacesContext.getCurrentInstance().addMessage("salvar", new FacesMessage("Moeda salva com sucesso!"));
+		
 		moeda = new Moeda();
+		
 	}
 
 	public List<Moeda> getListaMoedas() {
