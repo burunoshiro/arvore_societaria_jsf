@@ -49,12 +49,22 @@ public class MoedaBean {
 
 			em.getTransaction().commit();
 
-			em.close();
-			
 		}
 		catch(Exception e) {
+			
 			e.printStackTrace();
+			
+			em.getTransaction().rollback();
+			
+			System.out.println("Erro ao tentar salvar moeda!");
+			
 			FacesContext.getCurrentInstance().addMessage("salvar", new FacesMessage("Erro ao tentar salvar moeda!"));
+			
+		}
+		finally {
+			
+			em.close();
+		
 		}
 
 		System.out.println("Moeda salva. Nome: " + moeda.getNome() + "  País: " + moeda.getPais()  );

@@ -19,14 +19,14 @@
 	<title>Cadastro de Moeda - Árvore Societária</title>
 
 	<style type="text/css">
-#principal {
-	margin-top: 90px;
-}
-
-body {
-	padding-bottom: 70px;
-}
-</style>
+		#principal {
+			margin-top: 90px;
+		}
+		
+		body {
+			padding-bottom: 70px;
+		}
+	</style>
 
 
 </h:head>
@@ -76,18 +76,26 @@ body {
 					value="#{moedaBean.listaMoedas}" var="moeda">
 					<h:column>
 						<f:facet name="header">id</f:facet>
-			#{moeda.id}</h:column>
+						#{moeda.id}
+					</h:column>
 					<h:column>
 						<f:facet name="header">nome</f:facet>
-			#{moeda.nome}</h:column>
+						#{moeda.nome}
+					</h:column>
 					<h:column>
 						<f:facet name="header">pais</f:facet>
-			#{moeda.pais}</h:column>
+						#{moeda.pais}
+						</h:column>
 					<h:column>
 						<f:facet name="header">situação</f:facet>
-			#{moeda.situacao}</h:column>
+						#{moeda.situacao}
+					</h:column>
 					<h:column>
-						<f:facet name="header">ação</f:facet>
+						<f:facet name="header">cotação</f:facet>
+						<h:commandLink action="#{moedaBean.excluir(moeda)}">cadastrar/visualizar</h:commandLink>
+					</h:column>
+					<h:column>
+						<f:facet name="header">exclusão</f:facet>
 						<h:commandLink action="#{moedaBean.excluir(moeda)}">excluir</h:commandLink>
 					</h:column>
 				</h:dataTable>
