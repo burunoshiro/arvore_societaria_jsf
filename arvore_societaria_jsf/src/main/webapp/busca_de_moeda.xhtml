@@ -26,8 +26,19 @@
 		body {
 			padding-bottom: 70px;
 		}
+		
+		#btn_excluir {
+			display: none;
+		}
 	</style>
 
+	<script>
+	
+		function excluir() {
+			btn
+		}
+	
+	</script>
 
 </h:head>
 <h:body>
@@ -96,7 +107,8 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">exclusão</f:facet>
-						<h:commandLink action="#{moedaBean.excluir(moeda)}">excluir</h:commandLink>
+						<a href="#"></a>
+						<h:commandLink id="#{moeda.id}" action="#{moedaBean.excluir(moeda)}">excluir</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</fieldset>

@@ -20,6 +20,7 @@ public class MoedaBean {
 	private Moeda moeda = new Moeda();
 	private List<Moeda> listaMoedas;
 	private String mensagem = "";
+	private String nomeBotao = "btn_excluir"; //Utilizado para nome do botao concatenado com id 
 	
 	public String getMensagem() {
 		return mensagem;
@@ -27,6 +28,14 @@ public class MoedaBean {
 
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
+	}
+
+	public String getNomeBotao() {
+		return nomeBotao;
+	}
+
+	public void setNomeBotao(String nomeBotao) {
+		this.nomeBotao = nomeBotao;
 	}
 
 	public Moeda getMoeda() {
