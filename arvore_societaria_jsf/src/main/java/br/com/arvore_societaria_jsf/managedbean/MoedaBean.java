@@ -21,7 +21,7 @@ import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
-	private List<Moeda> listaMoedas = new ArrayList<Moeda>();
+	private List<Moeda> listaMoedas;//= new ArrayList<Moeda>();
 	private String mensagem = "";
 	private Acao acao = Acao.save;
 	private String url = ""; //Utilizado para redicionamento 
@@ -65,7 +65,9 @@ public class MoedaBean {
 				
 				adicionaMensagem(Acao.save);
 				
-				listaMoedas.add(this.moeda);
+				if(listaMoedas != null) {
+					listaMoedas.add(this.moeda);
+				}
 				
 				this.moeda = new Moeda();
 				
@@ -135,15 +137,9 @@ public class MoedaBean {
 	}
 
 	
-	public void novaMoeda(ActionEvent event){
+	public void novaMoeda(){
 		
 		this.moeda = new Moeda();
-		
-		String urlAux = (String)event.getComponent().getAttributes().get("url"); 
- 		
-		if(urlAux != null && !urlAux.isEmpty()) {
-			this.url = urlAux;
-		}
 		
 	}
 	
