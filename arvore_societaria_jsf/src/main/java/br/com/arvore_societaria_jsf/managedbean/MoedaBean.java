@@ -1,26 +1,32 @@
 package br.com.arvore_societaria_jsf.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import com.sun.faces.config.FaceletsConfiguration;
-
 import br.com.arvore_societaria_jsf.bean.Moeda;
+import br.com.arvore_societaria_jsf.enums.Acao;
 import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 
 @ManagedBean
+@SessionScoped
 public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
-	private List<Moeda> listaMoedas;
+	private List<Moeda> listaMoedas = new ArrayList<Moeda>();
 	private String mensagem = "";
-	private String nomeBotao = "btn_excluir"; //Utilizado para nome do botao concatenado com id 
+	private Acao acao = Acao.save;
+	private String url = ""; //Utilizado para redicionamento 
+	//private String nomeBotao = "btn_excluir"; //Utilizado para nome do botao concatenado com id 
+	
 	
 	public String getMensagem() {
 		return mensagem;
@@ -28,14 +34,6 @@ public class MoedaBean {
 
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
-	}
-
-	public String getNomeBotao() {
-		return nomeBotao;
-	}
-
-	public void setNomeBotao(String nomeBotao) {
-		this.nomeBotao = nomeBotao;
 	}
 
 	public Moeda getMoeda() {
@@ -54,8 +52,24 @@ public class MoedaBean {
 			
 			em.getTransaction().begin();
 
-			em.persist(moeda);
-
+			if(moeda.getId() != null && em.find(Moeda.class, moeda.getId()) != null) {
+				em.merge(this.moeda);
+				
+				adicionaMensagem(Acao.update);
+				
+				em.detach(this.moeda);
+				
+			} else {
+				
+				em.persist(this.moeda);
+				
+				adicionaMensagem(Acao.save);
+				
+				listaMoedas.add(this.moeda);
+				
+				this.moeda = new Moeda();
+				
+			}
 			em.getTransaction().commit();
 
 		}
@@ -67,8 +81,7 @@ public class MoedaBean {
 			
 			System.out.println("Erro ao tentar salvar moeda!");
 			
-			FacesContext.getCurrentInstance().addMessage("salvar", new FacesMessage("Erro ao tentar salvar moeda!"));
-			
+			return;
 		}
 		finally {
 			
@@ -76,12 +89,6 @@ public class MoedaBean {
 		
 		}
 
-		System.out.println("Moeda salva. Nome: " + moeda.getNome() + "  País: " + moeda.getPais()  );
-		
-		FacesContext.getCurrentInstance().addMessage("salvar", new FacesMessage("Moeda salva com sucesso!"));
-		
-		moeda = new Moeda();
-		
 	}
 
 	public List<Moeda> getListaMoedas() {
@@ -98,7 +105,7 @@ public class MoedaBean {
 
 	}
 
-	public void excluir(Moeda moeda) {
+	public void remove(Moeda moeda) {
 
 		EntityManager em = JPAUtil.getEntityManager();
 		EntityTransaction tr = em.getTransaction();
@@ -113,7 +120,62 @@ public class MoedaBean {
 		tr.commit();
 
 		em.close();
-
+		
 	}
 
+	public String alterarMoeda(Moeda moedaSelecionada) {
+		
+		for(Moeda moeda : listaMoedas) {
+			if(moedaSelecionada == moeda) {
+				this.moeda = moeda;
+			}
+		}
+		
+		return "/moeda/cadastro_de_moeda?faces-redirect=true";
+	}
+
+	
+	public void novaMoeda(ActionEvent event){
+		
+		this.moeda = new Moeda();
+		
+		String urlAux = (String)event.getComponent().getAttributes().get("url"); 
+ 		
+		if(urlAux != null && !urlAux.isEmpty()) {
+			this.url = urlAux;
+		}
+		
+	}
+	
+	public String redireciona(){
+		return this.url;
+	}
+	
+	private void adicionaMensagem(Acao acao) {
+		
+		if(acao == Acao.save) {
+		
+			FacesContext.getCurrentInstance().addMessage("salvar", new FacesMessage("Moeda Salva com sucesso!"));
+			
+			System.out.println("Moeda salva. Nome: " + moeda.getNome() + "  País: " + moeda.getPais()  );
+			
+		} else if(acao == Acao.update) {
+		
+			FacesContext.getCurrentInstance().addMessage("alterar", new FacesMessage("Moeda alterada com sucesso!"));
+		
+		} else if(acao == Acao.delete) {
+			
+			FacesContext.getCurrentInstance().addMessage("deletar", new FacesMessage("Moeda deletada com sucesso!"));
+			
+		}
+	
+	}
+
+	public Acao getAcao() {
+		return acao;
+	}
+
+	public void setAcao(Acao acao) {
+		this.acao = acao;
+	}
 }

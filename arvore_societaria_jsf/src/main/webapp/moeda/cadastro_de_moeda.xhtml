@@ -9,10 +9,10 @@
 
 	<link rel="stylesheet"
 		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
-	<script src="jquery/jquery.min.js"></script>
+	<script src="../jquery/jquery.min.js"></script>
 
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
 
@@ -24,7 +24,7 @@
 		}
 		
 		body {
-			padding-bottom: 70px;
+			padding-bottom: 40px;
 		}
 		
 		#mensagem {
@@ -33,6 +33,11 @@
 			font-weight: bold;
 		
 		}
+		
+		.btn_novo { 
+			
+ 			margin-right: 20px; 
+ 		} 
 		
 	</style>
 
@@ -44,11 +49,15 @@
 			
 			if(mensagem != "") {
 				
-				if(mensagem.match("sucesso")) {
-					$("#mensagem").addClass("alert alert-success");
-				}
-				else if (mensagem.match("erro")){
+				if("#{moedaBean.acao}" == "erro" || mensagem.match("obrigatório")) {
+					
 					$("#mensagem").addClass("alert alert-warning");
+					
+				}
+				else {
+					
+					$("#mensagem").addClass("alert alert-success");
+					
 				}
 				
 			}
@@ -60,6 +69,7 @@
 </h:head>
 <h:body>
 
+<h:form>
 <!-- 	Menu Principal   -->
 	<nav class="navbar navbar-default">
 		<div class="container">
@@ -86,7 +96,11 @@
 						aria-expanded="false">Moeda <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="cadastro_de_moeda.xhtml">Cadastro de Moeda</a></li>
-							<li><a href="busca_de_moeda.xhtml">Busca de Moeda</a></li>
+							
+							<li><h:commandLink actionListener="#{moedaBean.novaMoeda}" action="moedaBean.redireciona" value="Busca de Moeda">
+								<f:attribute name="url" value="busca_de_moeda"/>
+							</h:commandLink></li>
+							
 							<li><a href="">Cadastro de Cotação</a></li>
 							<li><a href="#">Busca de Cotação</a></li>
 						</ul></li>
@@ -96,6 +110,7 @@
 		</div>
 	</nav>
 <!-- 	Fim Menu Principal -->
+</h:form>
 
 <!-- Form de cadastro de moeda -->
 	<div id="principal" class="container">
@@ -109,13 +124,13 @@
 					<label class="control-label col-sm-3">Nome:</label>
 					<div class="col-sm-6">
 						<h:inputText class="form-control col-sm-6"
-							value="#{moedaBean.moeda.nome}" />
+							value="#{moedaBean.moeda.nome}" required="true" requiredMessage="Campo nome obrigatório!!"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-3">País:</label>
 					<div class="col-sm-6">
-						<h:inputText class="form-control" value="#{moedaBean.moeda.pais}" />
+						<h:inputText class="form-control" value="#{moedaBean.moeda.pais}" required="true" requiredMessage="Campo país obrigatório!!"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -131,11 +146,16 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-8 col-sm-1">
-
-						<h:commandButton class="btn btn-primary btn-md pull-right"
+					
+					<div class="col-sm-offset-6 col-sm-3">
+					
+						<h:commandButton id="btn_salvar" class="btn btn-primary btn-md pull-right"
 							value="Salvar" action="#{moedaBean.salva}" />
+					
+						<h:commandButton id="btn_novo" class="btn btn-primary btn-md pull-right btn_novo"  value="Novo" action="#{moedaBean.novaMoeda}"/>
+						
 					</div>
+			
 				</div>
 
 

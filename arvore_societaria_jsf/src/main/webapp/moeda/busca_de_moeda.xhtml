@@ -11,10 +11,10 @@
 		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
 	<script src="jquery/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
+	<!-- <script type="text/javascript" src="../jquery/jquery.ddslick.js"></script> -->
 
 	<title>Cadastro de Moeda - Árvore Societária</title>
 
@@ -34,9 +34,7 @@
 
 	<script>
 	
-		function excluir() {
-			btn
-		}
+
 	
 	</script>
 
@@ -54,7 +52,7 @@
 					<li><a href="#">Home</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Empresa <span class="caret"></span></a>
+						aria-expanded="false">Empresa<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="">Cadastro de Empresa</a></li>
 							<li><a href="#">Busca de Empresas</a></li>
@@ -80,10 +78,13 @@
 
 	<div id="principal" class="container">
 		<h:form>
+		
+ 		
+		
 			<fieldset>
 				<legend>Busca de Moeda</legend>
 
-				<h:dataTable id="tabela_moeda" class="table"
+				<h:dataTable  class="table"
 					value="#{moedaBean.listaMoedas}" var="moeda">
 					<h:column>
 						<f:facet name="header">id</f:facet>
@@ -103,15 +104,25 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">cotação</f:facet>
-						<h:commandLink action="#{moedaBean.excluir(moeda)}">cadastrar/visualizar</h:commandLink>
+						<h:commandLink action="#{moedaBean.alterarMoeda(moeda)}">cadastrar/visualizar</h:commandLink>
 					</h:column>
 					<h:column>
 						<f:facet name="header">exclusão</f:facet>
-						<a href="#"></a>
-						<h:commandLink id="#{moeda.id}" action="#{moedaBean.excluir(moeda)}">excluir</h:commandLink>
+						<p:commandLink value="excluir" actionListener="#{moedaBean.remove(moeda)}" update="@form" >
+							<p:confirm header="Confirmação" message="Tem certeza que deseja excluir moeda?" icon="ui-icon-alert" />
+						</p:commandLink>
+						
 					</h:column>
 				</h:dataTable>
+				
 			</fieldset>
+		</h:form>
+		
+		<h:form>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
 		</h:form>
 	</div>
 
