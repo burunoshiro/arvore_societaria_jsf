@@ -21,7 +21,7 @@ import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 public class MoedaBean {
 
 	private Moeda moeda = new Moeda();
-	private List<Moeda> listaMoedas;//= new ArrayList<Moeda>();
+	private List<Moeda> listaMoedas;
 	private String mensagem = "";
 	private Acao acao = Acao.save;
 	private String url = ""; //Utilizado para redicionamento 
