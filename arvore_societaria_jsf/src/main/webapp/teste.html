@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://java.sun.com/jsf"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script>
+
+<script>
+	$(function() {
+
+		$('#btn-teste').on('click', function() {
+			$('h1').toggle();
+		});
+
+	});
+</script>
+
+</head>
+<body>
+	<h1>Teste</h1>
+
+	<button id="btn-teste">teste</button>
+
+	<select id="teste">
+		<option value="0"
+			data-imagesrc="http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
+			data-description="Description with Facebook">Facebook</option>
+		<option value="1"
+			data-imagesrc="http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
+			data-description="Description with Twitter">Twitter</option>
+		<option value="2" selected="selected"
+			data-imagesrc="http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
+			data-description="Description with LinkedIn">LinkedIn</option>
+		<option value="3"
+			data-imagesrc="http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+			data-description="Description with Foursquare">Foursquare</option>
+	</select>
+	
+	<ul>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Some Dropdown<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="#"><i class="icon-arrow-up"></i> Up</a></li>
+            <li><a href="#"><i class="icon-arrow-down"></i> Down</a></li>
+            <li><a href="#"><i class="icon-arrow-left"></i> Left</a></li>
+            <li><a href="#"><i class="icon-arrow-right"></i> Right</a></li>
+        </ul>
+    </li>
+</ul>
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#"><i class="icon-arrow-up"></i>Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+<script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<!-- <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script> -->
+<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+	
+</body>
+<script>
+	$('#teste').ddslick({
+		onSelected : function(selectedData) {
+			//callback function: do something with selectedData;
+		}
+	});
+
+
+</script>
+
+<h:form>
+	<p:selectOneMenu id="console" value="#{moedaBean.moeda.ativa}">
+		<f:selectItem itemLabel="Ativa" itemValue="true" />
+		<f:selectItem itemLabel="Inativa" itemValue="false" />
+	</p:selectOneMenu>
+</h:form>
+
+</html>

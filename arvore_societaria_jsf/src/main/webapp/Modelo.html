@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+
+
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+	<script src="jquery/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
+
+	<title>Cadastro de Moeda - Árvore Societária</title>
+
+	<style type="text/css">
+		#principal {
+			margin-top: 90px;
+		}
+		
+		body {
+			padding-bottom: 70px;
+		}
+	</style>
+
+
+</h:head>
+<h:body>
+
+<!-- 	Menu Principal -->
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Árvore societária</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="#">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Empresa <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="">Cadastro de Empresa</a></li>
+							<li><a href="#">Busca de Empresas</a></li>
+						</ul></li>
+					<li class="dropdown active" ><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Moeda <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="cadastro_de_moeda.xhtml">Cadastro de Moeda</a></li>
+							<li><a href="busca_de_moeda.xhtml">Busca de Moeda</a></li>
+							<li><a href="">Cadastro de Cotação</a></li>
+							<li><a href="#">Busca de Cotação</a></li>
+						</ul></li>
+					<li><a href="#">Árvore</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<!-- 	Fim Menu Principal -->
+
+<!-- Form de cadastro de moeda -->
+	<div id="principal" class="container">
+		<h:form class="form-horizontal">
+			<fieldset>
+				<legend>Busca de Moeda</legend>
+				<div class="form-group">
+					<label class="control-label col-sm-3">Nome:</label>
+					<div class="col-sm-6">
+						<h:inputText class="form-control col-sm-6"
+							value="#{moedaBean.moeda.nome}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-3">País:</label>
+					<div class="col-sm-6">
+						<h:inputText class="form-control" value="#{moedaBean.moeda.pais}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-3">Situação:</label>
+					<div class="col-sm-2">
+
+						<h:selectOneMenu class="form-control col-sm-3" style="width:125px"
+							value="#{moedaBean.moeda.ativa}">
+							<f:selectItem itemLabel="Ativa" itemValue="true" />
+							<f:selectItem itemLabel="Inativa" itemValue="false" />
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-8 col-sm-1">
+
+						<h:commandButton class="btn btn-primary btn-md pull-right"
+							value="Salvar" action="#{moedaBean.salva}" />
+					</div>
+				</div>
+
+
+			</fieldset>
+		</h:form>
+<!-- Fim do Form de cadastro de moeda -->
+
+
+	</div>
+</h:body>
+
+</html>

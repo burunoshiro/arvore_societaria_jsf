@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width"></meta>
+
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+	<script src="/arvore_societaria_jsf/jquery/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="/arvore_societaria_jsf/bootstrap/css/bootstrap.min.css"></link>
+	<script type="text/javascript" src="/arvore_societaria_jsf/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
+
+	<title>Cadastro de Moeda - Árvore Societária</title>
+
+	<style type="text/css">
+		#principal {
+			margin-top: 90px;
+		}
+		
+		body {
+			padding-bottom: 40px;
+		}
+		
+		#mensagem {
+		
+			list-style-type: none;
+			font-weight: bold;
+		
+		}
+		
+		.btn_novo { 
+			
+ 			margin-right: 20px; 
+ 		} 
+
+	</style>
+
+	<script type="text/javascript">
+	
+		//Limpa os dados do formulário
+		function limpaMoeda() {
+
+			$(".btn_novo").click();
+			
+		}		
+	
+ 		$(function() {
+			
+			var mensagem = $("#mensagem").text();
+			
+			if(mensagem != "") {
+				
+				//Verifica se houve erro ao executar uma ação ou se a o campo é obrigatório
+				if("#{moedaBean.acao}" == "erro" || mensagem.match("obrigatório")) {
+					
+					//Muda a classe do div para ficar com estilo de aviso de erro
+					$("#mensagem").addClass("alert alert-warning");
+					
+				}
+				else {
+					
+					//Muda a classe do div para ficar com estilo de aviso sucesso (campo em verde)
+					$("#mensagem").addClass("alert alert-success");
+					
+				}
+				
+			}
+			
+			//Limpa a moeda ao sair da tela
+			window.onbeforeunload = limpaMoeda();
+			
+ 		})
+	
+	</script>
+
+</h:head>
+<h:body>
+
+<h:form>
+<!-- 	Menu Principal   -->
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Árvore societária</a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+				<SPAN class="icon-bar"></SPAN>
+				<SPAN class="icon-bar"></SPAN>
+				<SPAN class="icon-bar"></SPAN>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="nav navbar-nav">
+					<li class=""><a href="#">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Empresa <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="">Cadastro de Empresa</a></li>
+							<li><a href="#">Busca de Empresas</a></li>
+						</ul></li>
+					<li class="dropdown active"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Moeda <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/arvore_societaria_jsf/moeda/cadastro_de_moeda.xhtml">Cadastro de Moeda</a></li>
+							
+							<li><a href="/arvore_societaria_jsf/moeda/busca_de_moeda.xhtml">Busca de Moeda</a></li>
+							
+							<li><a href="">Cadastro de Cotação</a></li>
+							<li><a href="#">Busca de Cotação</a></li>
+						</ul></li>
+					<li><a href="#">Árvore</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<!-- 	Fim Menu Principal -->
+</h:form>
+
+<!-- Form de cadastro de moeda -->
+	<div id="principal" class="container">
+	
+		<h:messages id="mensagem"/>
+		
+		<h:form class="form-horizontal">
+			<fieldset>
+				<legend>Cadastro de Moeda</legend>
+				<div class="form-group">
+					<label class="control-label col-sm-3">Nome:</label>
+					<div class="col-sm-6">
+						<h:inputText id="nome" class="form-control col-sm-6"
+							value="#{moedaBean.moeda.nome}" required="true" requiredMessage="Campo nome obrigatório!!"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-3">País:</label>
+					<div class="col-sm-6">
+						<h:inputText id="pais" class="form-control" value="#{moedaBean.moeda.pais}" required="true" requiredMessage="Campo país obrigatório!!"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-3">Situação:</label>
+					<div class="col-sm-2">
+
+						<h:selectOneMenu class="form-control col-sm-3" style="width:125px"
+							value="#{moedaBean.moeda.ativa}">
+							<f:selectItem itemLabel="Ativa" itemValue="true" />
+							<f:selectItem itemLabel="Inativa" itemValue="false" />
+						</h:selectOneMenu>
+
+					</div>
+				</div>
+				<div class="form-group">
+					
+					<div class="col-sm-offset-6 col-sm-3">
+					
+						<h:commandButton id="btn_salvar" class="btn btn-primary btn-md pull-right"
+							value="Salvar" action="#{moedaBean.salva}" />
+					
+						<h:commandButton class="btn btn-primary btn-md pull-right btn_novo" value="Novo" actionListener="#{moedaBean.novaMoeda}" >
+							<f:ajax render="@form"></f:ajax>
+						</h:commandButton>
+						
+					</div>
+			
+				</div>
+
+<!-- 				<input type="button" id="teste" onclick="limpaMoeda(); return false;" value="chama botao limpar"/> -->
+				
+<!-- 				<h:commandButton type="button" class="btnTeste" onclick="testee(); return false;" value="chama funcao servidor"/> -->
+
+			</fieldset>
+		</h:form>
+<!-- Fim do Form de cadastro de moeda -->
+
+		
+		
+	</div>
+</h:body>
+
+
+
+</html>
