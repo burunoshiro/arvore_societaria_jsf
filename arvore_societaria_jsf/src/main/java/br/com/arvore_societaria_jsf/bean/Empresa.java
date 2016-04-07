@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import br.com.arvore_societaria_jsf.dao.IEntidadeDAO;
+
 @Entity
-public class Empresa {
+public class Empresa implements IEntidadeDAO{
 
 	@Id @GeneratedValue 
 	private Long id;

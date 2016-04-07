@@ -10,4 +10,11 @@ public class EmpresaBean {
 
 	Empresa empresa = new Empresa();
 	
+	public void salva() {
+		
+		
+		empresa
+		
+	}
+	
 }
