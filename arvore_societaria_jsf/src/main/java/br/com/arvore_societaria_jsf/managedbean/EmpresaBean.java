@@ -12,6 +12,7 @@ public class EmpresaBean {
 	
 	public void salva() {
 		
+		empresa = null;
 		
 	}
 	
