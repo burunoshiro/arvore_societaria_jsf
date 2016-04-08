@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 public class Cotacao {
 
 	@Id @GeneratedValue
-	private	Long id;
+	private	Integer id;
 	
 	private BigDecimal valor;
 	
@@ -24,11 +24,11 @@ public class Cotacao {
 	@ManyToOne
 	private Moeda moeda;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
