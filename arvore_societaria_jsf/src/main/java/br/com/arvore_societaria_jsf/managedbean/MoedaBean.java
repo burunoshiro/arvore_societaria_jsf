@@ -125,9 +125,10 @@ public class MoedaBean {
 		return "/moeda/cadastro_de_moeda?faces-redirect=true";
 	}
 
-
 	public void novaMoeda(){
-
+		
+		//Se o comando for chamado em uma operação de alteração de moeda, mantém o registro
+		//Necessário, pois o comando "window.onunload", é chamado mesmo ao entrar na página devido ao jsf 
 		if(this.acao == Acao.update) {
 			this.acao = Acao.save;
 			return;
