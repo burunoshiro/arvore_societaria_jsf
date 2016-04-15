@@ -48,6 +48,7 @@ public class MoedaBean {
 		MoedaDAO moedaDAO = new MoedaDAO();
 
 		try {
+			
 			//atualiza registro da moeda
 			if(moeda.getId() != null && moedaDAO.buscaPorID(Moeda.class, moeda.getId()) != null) {
 
@@ -111,6 +112,7 @@ public class MoedaBean {
 			e.printStackTrace();
 
 		}
+		
 	}
 
 	public String alterarMoeda(Moeda moedaSelecionada) {
