@@ -1,17 +1,20 @@
 package br.com.arvore_societaria_jsf.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import br.com.arvore_societaria_jsf.bean.Empresa;
 import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.dao.EmpresaDAO;
 import br.com.arvore_societaria_jsf.dao.MoedaDAO;
 import br.com.arvore_societaria_jsf.enums.Acao;
+import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
 
 @ManagedBean
 @SessionScoped
@@ -20,40 +23,82 @@ public class EmpresaBean {
 	private Empresa empresa = new Empresa();
 	private List<Empresa> listaEmpresas = null;
 	private Acao acao = Acao.save;
+	private String mensagem = "";
+	private String url = "";
+	
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
 	
 	public void salva() {
-		
-		EmpresaDAO dao = new EmpresaDAO();
-		
-		if(empresa != null) {
-			dao.salva(empresa);
+
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+
+		ResultadoOperacao resultadoOperacao; 
+
+
+		resultadoOperacao = empresaDAO.salva(this.empresa);
+
+		if (resultadoOperacao == ResultadoOperacao.alterado) {
+
+			adicionaMensagem(Acao.update);
+
+		} 
+		else if(resultadoOperacao == ResultadoOperacao.salvo) {
+
+			adicionaMensagem(Acao.save);
+
+			if(listaEmpresas != null) {
+				listaEmpresas.add(this.empresa);
+			}
+
+			this.empresa = new Empresa();
+
+		}
+		else if(resultadoOperacao == ResultadoOperacao.erro) {
+
+			System.out.println("Erro ao tentar salvar/alterar empresa!");
+
+			adicionaMensagem(Acao.erro);
+
 		}
 
-		
-		
 	}
 	
-	public List<Moeda> getListaMoedas() {
+	public List<Empresa> getListaEmpresas() {
 
-		if(listaMoedas == null) {
+		if(listaEmpresas == null) {
 
-			MoedaDAO moedaDAO = new MoedaDAO();
+			EmpresaDAO empresaDAO = new EmpresaDAO();
 
-			listaMoedas = moedaDAO.buscaTodos();
+			listaEmpresas = empresaDAO.buscaTodos();
 
 		}
 
-		return listaMoedas;
+		return listaEmpresas;
 	}
 
-	public void remove(Moeda moeda) {
+	public void remove(Empresa empresa) {
 
-		MoedaDAO moedaDAO = new MoedaDAO();
+		EmpresaDAO empresaDAO = new EmpresaDAO();
 
 		try {
-			moedaDAO.remove(moeda);
+			empresaDAO.remove(empresa);
 
-			listaMoedas.remove(moeda);
+			listaEmpresas.remove(empresa);
 		}
 		catch(Exception e) {
 
@@ -63,28 +108,28 @@ public class EmpresaBean {
 		
 	}
 
-	public String alterarMoeda(Empresa empresaSelecionada) {
+	public String alterarEmpresa(Empresa empresaSelecionada) {
 
 		for(Empresa empresa : listaEmpresas) {
-			if(empresaSelecionada == moeda) {
-				acao = Acao.update; //Coloca ação como update para a moeda não ser apagada pelo botão "novo"
-				this.moeda = moeda;
+			if(empresaSelecionada == empresa) {
+				acao = Acao.update; //Coloca ação como update para a empresa não ser apagada pelo botão "novo"
+				this.empresa = empresa;
 			}
 		}
 
-		return "/moeda/cadastro_de_moeda?faces-redirect=true";
+		return "/empresa/cadastro_de_empresa?faces-redirect=true";
 	}
 
-	public void novaMoeda(){
+	public void novaEmpresa(){
 		
-		//Se o comando for chamado em uma operação de alteração de moeda, mantém o registro
+		//Se o comando for chamado em uma operação de alteração de empresa, mantém o registro
 		//Necessário, pois o comando "window.onunload", é chamado mesmo ao entrar na página devido ao jsf 
 		if(this.acao == Acao.update) {
 			this.acao = Acao.save;
 			return;
 		}
 
-		this.moeda = new Moeda();
+		this.empresa = new Empresa();
 
 	}
 
@@ -109,6 +154,23 @@ public class EmpresaBean {
 
 		}
 
+	}
+	
+	public List<SelectItem> getMoedas() {
+		
+		MoedaDAO moedaDAO = new MoedaDAO();
+		
+		List<Moeda> listaMoeda = moedaDAO.buscaAtivas();
+		
+		List<SelectItem> listaItems = new ArrayList<SelectItem>();
+		
+		for(Moeda moeda : listaMoeda) {
+			
+			listaItems.add(new SelectItem(moeda.getId(), moeda.getNome()));
+			
+		}
+		
+		return listaItems;
 	}
 	
 	public Acao getAcao() {

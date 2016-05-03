@@ -6,14 +6,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 
 import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.dao.MoedaDAO;
 import br.com.arvore_societaria_jsf.enums.Acao;
-import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
+import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
 
 @ManagedBean
 @SessionScoped
@@ -47,35 +44,28 @@ public class MoedaBean {
 
 		MoedaDAO moedaDAO = new MoedaDAO();
 
-		try {
-			
-			//atualiza registro da moeda
-			if(moeda.getId() != null && moedaDAO.buscaPorID(Moeda.class, moeda.getId()) != null) {
+		ResultadoOperacao resultadoOperacao; 
 
-				moedaDAO.salva(this.moeda);
 
-				adicionaMensagem(Acao.update);
+		resultadoOperacao = moedaDAO.salva(this.moeda);
 
-			} 
-			//gera novo registro de moeda
-			else {
+		if (resultadoOperacao == ResultadoOperacao.alterado) {
 
-				moedaDAO.salva(this.moeda);
+			adicionaMensagem(Acao.update);
 
-				adicionaMensagem(Acao.save);
+		} 
+		else if(resultadoOperacao == ResultadoOperacao.salvo) {
 
-				if(listaMoedas != null) {
-					listaMoedas.add(this.moeda);
-				}
-				
-				this.moeda = new Moeda();
-				
+			adicionaMensagem(Acao.save);
+
+			if(listaMoedas != null) {
+				listaMoedas.add(this.moeda);
 			}
 
-		}
-		catch(Exception e) {
+			this.moeda = new Moeda();
 
-			e.printStackTrace();
+		}
+		else if(resultadoOperacao == ResultadoOperacao.erro) {
 
 			System.out.println("Erro ao tentar salvar/alterar moeda!");
 
@@ -112,7 +102,7 @@ public class MoedaBean {
 			e.printStackTrace();
 
 		}
-		
+
 	}
 
 	public String alterarMoeda(Moeda moedaSelecionada) {
@@ -128,7 +118,7 @@ public class MoedaBean {
 	}
 
 	public void novaMoeda(){
-		
+
 		//Se o comando for chamado em uma operação de alteração de moeda, mantém o registro
 		//Necessário, pois o comando "window.onunload", é chamado mesmo ao entrar na página devido ao jsf 
 		if(this.acao == Acao.update) {

@@ -1,18 +1,18 @@
 package br.com.arvore_societaria_jsf.dao;
 
-import java.util.ArrayList;
-
-import javax.management.Query;
 import javax.persistence.EntityManager;
 
+import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
 import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 
 public class GenericoDAO<T extends IEntidadeDAO> {
 
 	protected EntityManager em;
 	
-	public void salva(T objeto) {
+	public ResultadoOperacao salva(T objeto) {
 
+		ResultadoOperacao resultado;
+		
 		try {
 			
 			em = JPAUtil.getEntityManager();
@@ -23,6 +23,8 @@ public class GenericoDAO<T extends IEntidadeDAO> {
 				
 				em.persist(objeto);
 				
+				resultado = ResultadoOperacao.salvo;
+				
 			}
 			else {
 
@@ -30,6 +32,8 @@ public class GenericoDAO<T extends IEntidadeDAO> {
 				
 				em.detach(objeto);
 
+				resultado = ResultadoOperacao.alterado;
+				
 			}
 
 			em.getTransaction().commit();
@@ -39,6 +43,8 @@ public class GenericoDAO<T extends IEntidadeDAO> {
 			e.printStackTrace();
 			
 			em.getTransaction().rollback();
+			
+			resultado = ResultadoOperacao.erro;
 
 		} finally {
 			
@@ -46,6 +52,7 @@ public class GenericoDAO<T extends IEntidadeDAO> {
 			
 		}
 		
+		return resultado;
 	}
 
 	public void remove(T objeto) throws Exception{
