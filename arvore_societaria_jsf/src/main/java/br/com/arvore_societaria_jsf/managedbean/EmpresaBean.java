@@ -25,7 +25,8 @@ public class EmpresaBean {
 	private Acao acao = Acao.save;
 	private String mensagem = "";
 	private String url = "";
-	
+	private List<SelectItem> moedasSelected; 
+
 	public String getMensagem() {
 		return mensagem;
 	}
@@ -42,7 +43,26 @@ public class EmpresaBean {
 		this.empresa = empresa;
 	}
 
-	
+	public List<SelectItem> getMoedasSelected() {
+		
+		if (moedasSelected == null) {
+
+			moedasSelected = new ArrayList<SelectItem>();
+			
+			MoedaDAO moedaDAO = new MoedaDAO();
+
+			List<Moeda> listaMoeda = moedaDAO.buscaAtivas();
+
+			for(Moeda moeda : listaMoeda) {
+
+				moedasSelected.add(new SelectItem(moeda.getId(), moeda.getNome()));
+
+			}
+		}
+		
+		return moedasSelected;
+	}
+
 	public void salva() {
 
 		EmpresaDAO empresaDAO = new EmpresaDAO();
@@ -77,7 +97,7 @@ public class EmpresaBean {
 		}
 
 	}
-	
+
 	public List<Empresa> getListaEmpresas() {
 
 		if(listaEmpresas == null) {
@@ -105,7 +125,7 @@ public class EmpresaBean {
 			e.printStackTrace();
 
 		}
-		
+
 	}
 
 	public String alterarEmpresa(Empresa empresaSelecionada) {
@@ -121,7 +141,7 @@ public class EmpresaBean {
 	}
 
 	public void novaEmpresa(){
-		
+
 		//Se o comando for chamado em uma operação de alteração de empresa, mantém o registro
 		//Necessário, pois o comando "window.onunload", é chamado mesmo ao entrar na página devido ao jsf 
 		if(this.acao == Acao.update) {
@@ -136,7 +156,7 @@ public class EmpresaBean {
 	public String redireciona(){
 		return this.url;
 	}
-	
+
 	private void adicionaMensagem(Acao acao) {
 
 		if(acao == Acao.save) {
@@ -155,24 +175,27 @@ public class EmpresaBean {
 		}
 
 	}
-	
+
 	public List<SelectItem> getMoedas() {
-		
-		MoedaDAO moedaDAO = new MoedaDAO();
-		
-		List<Moeda> listaMoeda = moedaDAO.buscaAtivas();
-		
-		List<SelectItem> listaItems = new ArrayList<SelectItem>();
-		
-		for(Moeda moeda : listaMoeda) {
+
+		if (moedasSelected == null) {
+
+			moedasSelected = new ArrayList<SelectItem>();
 			
-			listaItems.add(new SelectItem(moeda.getId(), moeda.getNome()));
-			
+			MoedaDAO moedaDAO = new MoedaDAO();
+
+			List<Moeda> listaMoeda = moedaDAO.buscaAtivas();
+
+			for(Moeda moeda : listaMoeda) {
+
+				moedasSelected.add(new SelectItem(moeda.getId(), moeda.getNome()));
+
+			}
 		}
 		
-		return listaItems;
+		return moedasSelected;
 	}
-	
+
 	public Acao getAcao() {
 		return acao;
 	}
@@ -180,5 +203,5 @@ public class EmpresaBean {
 	public void setAcao(Acao acao) {
 		this.acao = acao;
 	}
-	
+
 }

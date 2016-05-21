@@ -37,8 +37,8 @@ public class MoedaDAO extends GenericoDAO<Moeda> {
 		try {
 			
 			em = JPAUtil.getEntityManager();
-		
-			Query query = em.createQuery("SELECT m FROM Moeda m WHERE ativa = 'true'", Moeda.class);
+			
+			Query query = em.createQuery("SELECT m FROM Moeda m WHERE ativa = 1", Moeda.class);
 			
 			return (ArrayList<Moeda>) query.getResultList();
 			
