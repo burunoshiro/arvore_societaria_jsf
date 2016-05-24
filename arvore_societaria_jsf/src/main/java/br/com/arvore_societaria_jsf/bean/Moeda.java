@@ -20,8 +20,6 @@ public class Moeda implements IEntidadeDAO {
 	@Transient
 	private String situacao;
 
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

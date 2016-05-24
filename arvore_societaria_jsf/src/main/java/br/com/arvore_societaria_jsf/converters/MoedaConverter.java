@@ -40,7 +40,7 @@ public class MoedaConverter implements Converter {
 			
 		}
 		
-		return null;
+		return "";
 		
 	}
 

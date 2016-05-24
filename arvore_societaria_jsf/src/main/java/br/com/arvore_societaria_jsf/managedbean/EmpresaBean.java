@@ -56,7 +56,7 @@ public class EmpresaBean {
 
 			for(Moeda moeda : listaMoeda) {
 
-				moedasSelected.add(new SelectItem(moeda.getId(), moeda.getNome()));
+				moedasSelected.add(new SelectItem(moeda, moeda.getNome()));
 
 			}
 		}
@@ -175,26 +175,6 @@ public class EmpresaBean {
 
 		}
 
-	}
-
-	public List<SelectItem> getMoedas() {
-
-		if (moedasSelected == null) {
-
-			moedasSelected = new ArrayList<SelectItem>();
-			
-			MoedaDAO moedaDAO = new MoedaDAO();
-
-			List<Moeda> listaMoeda = moedaDAO.buscaAtivas();
-
-			for(Moeda moeda : listaMoeda) {
-
-				moedasSelected.add(new SelectItem(moeda.getId(), moeda.getNome()));
-
-			}
-		}
-		
-		return moedasSelected;
 	}
 
 	public Acao getAcao() {

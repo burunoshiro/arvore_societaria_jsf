@@ -108,7 +108,7 @@ body {
 				<div class="form-group">
 					<label class="control-label col-sm-3">Moeda: </label>
 					<div class="col-sm-3">
-						<h:selectOneMenu value="#{empresaBean.moedaSelecionada}" class="form-control" required="true" requiredMessage="Escolha uma moeda!">
+						<h:selectOneMenu value="#{empresaBean.empresa.moeda}" class="form-control" required="true" requiredMessage="Escolha uma moeda!">
 							<f:selectItem itemLabel="Selecione uma moeda..." itemValue=""></f:selectItem>
 							<f:selectItems value="#{empresaBean.moedasSelected}" var="m" itemValue="#{m}" />
 						</h:selectOneMenu>
