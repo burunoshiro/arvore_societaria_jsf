@@ -43,7 +43,5 @@ public class Empresa implements IEntidadeDAO{
 	public void setMoeda(Moeda moeda) {
 		this.moeda = moeda;
 	}
-	
-	
-	
+
 }

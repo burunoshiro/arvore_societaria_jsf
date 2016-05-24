@@ -26,6 +26,7 @@ public class EmpresaBean {
 	private String mensagem = "";
 	private String url = "";
 	private List<SelectItem> moedasSelected; 
+	private Moeda moedaSelecionada;
 
 	public String getMensagem() {
 		return mensagem;
@@ -202,6 +203,14 @@ public class EmpresaBean {
 
 	public void setAcao(Acao acao) {
 		this.acao = acao;
+	}
+
+	public Moeda getMoedaSelecionada() {
+		return moedaSelecionada;
+	}
+
+	public void setMoedaSelecionada(Moeda moedaSelecionada) {
+		this.moedaSelecionada = moedaSelecionada;
 	}
 
 }

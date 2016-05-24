@@ -30,11 +30,11 @@ public class MoedaConverter implements Converter {
 	}
 
 	@Override
-	public String getAsString(FacesContext arg0, UIComponent arg1, Object moedaObjeto) {
+	public String getAsString(FacesContext arg0, UIComponent arg1, Object value) {
 		
-		if(moedaObjeto != null) {
+		if(value instanceof Moeda) {
 			
-			Moeda moeda = (Moeda) moedaObjeto;
+			Moeda moeda = (Moeda) value;
 			
 			return moeda.getId().toString();
 			
