@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
 import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
 
-public class GenericoDAO<T extends IEntidadeDAO> {
+public abstract class GenericoDAO<T extends IEntidadeDAO> {
 
 	protected EntityManager em;
 	

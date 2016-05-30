@@ -21,11 +21,59 @@ body {
 }
 
 .btn_novo {
-	
 	margin-right: 10px;
-	
+}
+
+#mensagem {
+	list-style-type: none;
+	font-weight: bold;
 }
 </STYLE>
+
+<script type="text/javascript">
+	
+		//Limpa os dados do formulário
+		function limpaEmpresa() {
+
+			$(".btn_novo").click();
+			
+		}		
+	
+ 		$(function() {
+			
+			var mensagem = $("#mensagem").text();
+			
+			if(mensagem != "") {
+				
+				//Verifica se houve erro ao executar uma ação ou se a o campo é obrigatório
+				if("#{empresaBean.acao}" == "erro" || mensagem.match("obrigatório")) {
+					
+					//Muda a classe do div para ficar com estilo de aviso de erro
+					$("#mensagem").addClass("alert alert-warning");
+					
+				} 
+				//Verifica se a mensagem é "Escolha uma moeda"
+				else if(mensagem.match("moeda")) {
+
+					//Muda a classe do div para ficar com estilo de warning(amarelo)
+					$("#mensagem").addClass("alert alert-info");
+					
+				}
+				else {
+					
+					//Muda a classe do div para ficar com estilo de aviso sucesso (campo em verde)
+					$("#mensagem").addClass("alert alert-success");
+					
+				}
+				
+			}
+			
+			//Limpa a empresa ao sair da tela
+			window.onbeforeunload = limpaEmpresa();
+			
+ 		})
+	
+	</script>
 
 </head>
 <h:body>
@@ -82,8 +130,8 @@ body {
 
 	<div id="principal" class="container">
 
-		<h:messages id="mensagem"/>
-	
+		<h:messages id="mensagem" />
+
 		<h:form class="form-horizontal" role="form">
 
 			<fieldset>
@@ -94,7 +142,8 @@ body {
 						Social: </label>
 					<div class="col-sm-7">
 						<h:inputText id="txt_razaoSocial" class="form-control"
-							value="#{empresaBean.empresa.razaoSocial}" required="true" requiredMessage="Campo razão social obrigatório"></h:inputText>
+							value="#{empresaBean.empresa.razaoSocial}" required="true"
+							requiredMessage="Campo razão social obrigatório"></h:inputText>
 					</div>
 				</div>
 				<div class="form-group">
@@ -102,22 +151,28 @@ body {
 					</label>
 					<div class="col-sm-5">
 						<h:inputText id="txt_pais" class="form-control"
-							value="#{empresaBean.empresa.pais}" required="true" requiredMessage="Campo país obrigatório"></h:inputText>
+							value="#{empresaBean.empresa.pais}" required="true"
+							requiredMessage="Campo país obrigatório"></h:inputText>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-3">Moeda: </label>
 					<div class="col-sm-3">
-						<h:selectOneMenu value="#{empresaBean.empresa.moeda}" class="form-control" required="true" requiredMessage="Escolha uma moeda!">
+						<h:selectOneMenu value="#{empresaBean.empresa.moeda}"
+							class="form-control" required="true"
+							requiredMessage="Escolha uma moeda!">
 							<f:selectItem itemLabel="Selecione uma moeda..." itemValue=""></f:selectItem>
-							<f:selectItems value="#{empresaBean.moedasSelected}" var="m" itemValue="#{m}" />
+							<f:selectItems value="#{empresaBean.moedasSelected}" var="m"
+								itemValue="#{m}" />
 						</h:selectOneMenu>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-md-10">
-						<h:commandButton id="btn_salvar" class="btn btn-default btn-primary pull-right" actionListener="#{empresaBean.salva}" value="Salvar"/>
-						
+						<h:commandButton id="btn_salvar"
+							class="btn btn-default btn-primary pull-right"
+							actionListener="#{empresaBean.salva}" value="Salvar" />
+
 					</div>
 				</div>
 			</fieldset>
