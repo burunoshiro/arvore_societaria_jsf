@@ -15,8 +15,9 @@ public class EmpresaDAO extends GenericoDAO<Empresa>{
 		
 			em = JPAUtil.getEntityManager();
 			
-			Query query = em.createNamedQuery("SELECT e FROM Empresa e", Empresa.class);
+			Query query = em.createQuery("SELECT e FROM Empresa e", Empresa.class);
 
+			System.out.println("mudanca");
 			return (ArrayList<Empresa>) query.getResultList();	
 		
 		} catch(Exception e) {

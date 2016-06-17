@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+	<meta name="viewport" content="width=device-width"></meta>
+
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+
+
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
+
+
+
+	<title>Cadastro de Moeda - Árvore Societária</title>
+
+	<style type="text/css">
+		#principal {
+			margin-top: 90px;
+		}
+
+		body {
+			padding-bottom: 70px;
+		}
+	</style>
+
+
+</h:head>
+<h:body>
+
+	<!-- 	Menu Principal -->
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Árvore societária</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><a href="#">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Empresa <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a
+								href="/arvore_societaria_jsf/empresa/cadastro_de_empresa.xhtml">Cadastro
+									de Empresa</a></li>
+							<li><a
+								href="/arvore_societaria_jsf/empresa/busca_de_empresa.xhtml">Busca
+									de Empresas</a></li>
+						</ul></li>
+					<li class="dropdown active"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">Moeda <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a
+								href="/arvore_societaria_jsf/moeda/cadastro_de_moeda.xhtml">Cadastro
+									de Moeda</a></li>
+							<li><a
+								href="/arvore_societaria_jsf/moeda/busca_de_moeda.xhtml">Busca
+									de Moeda</a></li>
+							<li><a href="">Cadastro de Cotação</a></li>
+							<li><a href="#">Busca de Cotação</a></li>
+						</ul></li>
+					<li><a href="#">Árvore</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- 	Fim Menu Principal -->
+
+	<div id="principal" class="container">
+
+		<ui:insert name="content"></ui:insert>
+
+	</div>
+</h:body>
+
+</html>

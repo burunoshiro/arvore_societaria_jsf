@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="content">
+		<!-- Tabela de moedas -->
+
+			<h:form>
+				<fieldset>
+					<legend>Busca de Empresa</legend>
+
+					<div class="table-responsive">
+						<h:dataTable class="table" value="#{empresaBean.listaEmpresas}"
+							var="empresa">
+							<h:column>
+								<f:facet name="header">id</f:facet>
+						#{empresa.id}
+					</h:column>
+							<h:column>
+								<f:facet name="header">nome</f:facet>
+						#{empresa.razaoSocial}
+					</h:column>
+							<h:column>
+								<f:facet name="header">pais</f:facet>
+						#{empresa.pais}
+						</h:column>
+
+							<h:column>
+								<f:facet name="header">moeda</f:facet>
+						#{empresa.moeda.nome}
+						</h:column>
+							<h:column>
+								<f:facet name="header">alteração</f:facet>
+								<h:commandLink action="#{empresaBean.alterarEmpresa(empresa)}">alterar</h:commandLink>
+							</h:column>
+							<h:column>
+								<f:facet name="header">exclusão</f:facet>
+								<p:commandLink value="excluir"
+									actionListener="#{empresaBean.remove(empresa)}" update="@form">
+									<p:confirm header="Confirmação"
+										message="Tem certeza que deseja excluir a empresa?"
+										icon="ui-icon-alert" />
+								</p:commandLink>
+
+							</h:column>
+						</h:dataTable>
+					</div>
+				</fieldset>
+			</h:form>
+
+			<h:form>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+
+		<!-- Fim fim tabela de moeda -->
+	</ui:define>
+</ui:composition>
+</html>
