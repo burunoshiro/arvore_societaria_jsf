@@ -1,5 +1,7 @@
 package br.com.arvore_societaria_jsf.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,8 +10,12 @@ import javax.persistence.Transient;
 import br.com.arvore_societaria_jsf.dao.IEntidadeDAO;
 
 @Entity
-public class Moeda implements IEntidadeDAO {
+public class Moeda implements IEntidadeDAO, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@GeneratedValue
 	@Id
 	private Long id;

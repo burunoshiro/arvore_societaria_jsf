@@ -1,10 +1,12 @@
 package br.com.arvore_societaria_jsf.managedbean;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.arvore_societaria_jsf.bean.Moeda;
@@ -13,9 +15,13 @@ import br.com.arvore_societaria_jsf.enums.Acao;
 import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
 
 @ManagedBean
-@SessionScoped
-public class MoedaBean {
+@ViewScoped
+public class MoedaBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Moeda moeda = new Moeda();
 	private List<Moeda> listaMoedas;
 	private String mensagem = "";
@@ -23,6 +29,14 @@ public class MoedaBean {
 	private String url = ""; //Utilizado para redirecionamento 
 	//private String nomeBotao = "btn_excluir"; //Utilizado para nome do botao concatenado com id 
 
+	@PostConstruct
+	public void moedaBean() {
+		System.out.println("Iniciando moeda");
+		if(FacesContext.getCurrentInstance().getExternalContext().getFlash().get("moedaSelecionada") != null) {
+			moeda = (Moeda) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("moedaSelecionada");
+		}
+		System.out.println("moeda: " + moeda.getNome());
+	}
 
 	public String getMensagem() {
 		return mensagem;
@@ -110,10 +124,11 @@ public class MoedaBean {
 		for(Moeda moeda : listaMoedas) {
 			if(moedaSelecionada == moeda) {
 				acao = Acao.update; //Coloca ação como update para a moeda não ser apagada pelo botão "novo"
-				this.moeda = moeda;
+				//this.moeda = moeda;
+				FacesContext.getCurrentInstance().getExternalContext().getFlash().put("moedaSelecionada", moeda);
 			}
 		}
-
+		
 		return "/moeda/cadastro_de_moeda?faces-redirect=true";
 	}
 
