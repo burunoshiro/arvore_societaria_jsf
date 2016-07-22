@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import javax.persistence.Query;
 
-import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.jpautil.JPAUtil;
+import br.com.arvore_societaria_jsf.model.Moeda;
 
 public class MoedaDAO extends GenericoDAO<Moeda> {
 

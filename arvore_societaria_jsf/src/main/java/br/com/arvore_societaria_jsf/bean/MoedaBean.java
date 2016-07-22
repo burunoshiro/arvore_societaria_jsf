@@ -1,4 +1,4 @@
-package br.com.arvore_societaria_jsf.managedbean;
+package br.com.arvore_societaria_jsf.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,10 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.dao.MoedaDAO;
 import br.com.arvore_societaria_jsf.enums.Acao;
 import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
+import br.com.arvore_societaria_jsf.model.Moeda;
 
 @ManagedBean
 @ViewScoped
@@ -30,10 +30,11 @@ public class MoedaBean implements Serializable{
 	//private String nomeBotao = "btn_excluir"; //Utilizado para nome do botao concatenado com id 
 
 	@PostConstruct
-	public void moedaBean() {
-		System.out.println("Iniciando moeda");
-		if(FacesContext.getCurrentInstance().getExternalContext().getFlash().get("moedaSelecionada") != null) {
-			moeda = (Moeda) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("moedaSelecionada");
+	public void iniciaBean() {
+		
+		Moeda moedaSelecionada = (Moeda) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("moedaSelecionada");
+		if(moedaSelecionada != null) {
+			moeda = moedaSelecionada;
 		}
 		System.out.println("moeda: " + moeda.getNome());
 	}

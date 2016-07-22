@@ -1,23 +1,25 @@
-package br.com.arvore_societaria_jsf.managedbean;
+package br.com.arvore_societaria_jsf.bean;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import br.com.arvore_societaria_jsf.bean.Empresa;
-import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.dao.EmpresaDAO;
 import br.com.arvore_societaria_jsf.dao.MoedaDAO;
 import br.com.arvore_societaria_jsf.enums.Acao;
 import br.com.arvore_societaria_jsf.enums.ResultadoOperacao;
+import br.com.arvore_societaria_jsf.model.Empresa;
+import br.com.arvore_societaria_jsf.model.Moeda;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class EmpresaBean {
 
 	private Empresa empresa = new Empresa();
@@ -44,6 +46,17 @@ public class EmpresaBean {
 		this.empresa = empresa;
 	}
 
+	@PostConstruct
+	public void iniciaBean() {
+		
+		Empresa empresaSelecionada = (Empresa)FacesContext.getCurrentInstance().getExternalContext().getFlash().get("empresaSelecionada");
+
+		if(empresaSelecionada != null) {
+			empresa = empresaSelecionada;
+		}
+		System.out.println("empresa: " + empresa.getRazaoSocial());
+	}
+	
 	public List<SelectItem> getMoedasSelected() {
 		
 		if (moedasSelected == null) {
@@ -134,7 +147,8 @@ public class EmpresaBean {
 		for(Empresa empresa : listaEmpresas) {
 			if(empresaSelecionada == empresa) {
 				acao = Acao.update; //Coloca ação como update para a empresa não ser apagada pelo botão "novo"
-				this.empresa = empresa;
+				//this.empresa = empresa;
+				FacesContext.getCurrentInstance().getExternalContext().getFlash().put("empresaSelecionada", empresa);
 			}
 		}
 

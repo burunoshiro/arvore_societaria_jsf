@@ -1,4 +1,4 @@
-package br.com.arvore_societaria_jsf.bean;
+package br.com.arvore_societaria_jsf.model;
 
 import java.io.Serializable;
 

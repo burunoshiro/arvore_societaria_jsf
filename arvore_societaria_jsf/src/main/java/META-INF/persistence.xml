@@ -5,9 +5,9 @@
 
 	<persistence-unit name="arvore_societaria_jsf">
 
-		<class>br.com.arvore_societaria_jsf.bean.Moeda</class>
-		<class>br.com.arvore_societaria_jsf.bean.Cotacao</class>
-		<class>br.com.arvore_societaria_jsf.bean.Empresa</class>
+		<class>br.com.arvore_societaria_jsf.model.Moeda</class>
+		<class>br.com.arvore_societaria_jsf.model.Cotacao</class>
+		<class>br.com.arvore_societaria_jsf.model.Empresa</class>
 		
 		<properties>
 

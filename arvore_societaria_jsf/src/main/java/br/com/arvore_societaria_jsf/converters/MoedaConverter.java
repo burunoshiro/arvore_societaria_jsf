@@ -5,8 +5,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.com.arvore_societaria_jsf.bean.Moeda;
 import br.com.arvore_societaria_jsf.dao.MoedaDAO;
+import br.com.arvore_societaria_jsf.model.Moeda;
 
 @FacesConverter(forClass = Moeda.class)
 public class MoedaConverter implements Converter {

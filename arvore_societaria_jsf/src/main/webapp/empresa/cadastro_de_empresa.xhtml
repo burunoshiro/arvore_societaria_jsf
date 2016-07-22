@@ -2,10 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html">
-<head>
-<meta charset="UTF-8" />
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+
 <title>Cadastro de Empresa</title>
+
+<
 
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="../jquery/jquery.min.js" />
@@ -29,7 +33,7 @@ body {
 	font-weight: bold;
 }
 </STYLE>
-
+<ui:insert
 <script type="text/javascript">
 	
 		//Limpa os dados do formulário
@@ -77,54 +81,6 @@ body {
 
 </head>
 <h:body>
-
-	<h:form>
-
-		<!-- 	Menu Principal   -->
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">Árvore societária</a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#menu">
-						<SPAN class="icon-bar"></SPAN> <SPAN class="icon-bar"></SPAN> <SPAN
-							class="icon-bar"></SPAN>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="menu">
-					<ul class="nav navbar-nav">
-						<li class=""><a href="#">Home</a></li>
-						<li class="dropdown active"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown" role="button"
-							aria-haspopup="true" aria-expanded="false">Empresa <span
-								class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/arvore_societaria_jsf/empresa/cadastro_de_empresa.xhtml">Cadastro
-										de Empresa</a></li>
-								<li><a href="/arvore_societaria_jsf/empresa/busca_de_empresa.xhtml">Busca de Empresas</a></li>
-							</ul></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Moeda <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a
-									href="/arvore_societaria_jsf/moeda/cadastro_de_moeda.xhtml">Cadastro
-										de Moeda</a></li>
-
-								<li><a
-									href="/arvore_societaria_jsf/moeda/busca_de_moeda.xhtml">Busca
-										de Moeda</a></li>
-								<li><a href="">Cadastro de Cotação</a></li>
-								<li><a href="#">Busca de Cotação</a></li>
-							</ul></li>
-						<li><a href="#">Árvore</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- 	Fim Menu Principal -->
-
-	</h:form>
 
 	<!--  Form de cadastro de empresa  -->
 
@@ -181,5 +137,5 @@ body {
 
 	</div>
 
-</h:body>
+</ui:composition>	
 </html>
