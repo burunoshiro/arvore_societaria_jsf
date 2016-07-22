@@ -18,11 +18,11 @@
 
 	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
 
-	<title>
-		<ui:insert name="title">
-		</ui:insert>
-	</title>
+	<title><ui:insert name="tituloPagina">
+		</ui:insert></title>
 
+	<ui:insert name="">
+	
 	<style type="text/css">
 		#principal {
 			margin-top: 90px;
@@ -33,13 +33,9 @@
 		}
 	</style>
 
-	<ui:insert name=""></ui:insert>
+	<ui:insert name="estilo"></ui:insert>
 
-	<div id="scripts">
-		
-		<ui:insert name="scripts"></ui:insert>
-		
-	</div>
+	<ui:insert name="script"></ui:insert>
 
 </h:head>
 <h:body>
@@ -53,11 +49,12 @@
 			<div>
 				<ul class="nav navbar-nav">
 					<li id="menu_home"><a href="#">Home</a></li>
-					<li class="dropdown" id="menu_empresa"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Empresa <span class="caret"></span></a>
-						<ul class="dropdown-menu" >
-							<li id="submenu_cadastro_empresa"><a 
+					<li class="dropdown" id="menu_empresa"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">Empresa <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li id="submenu_cadastro_empresa"><a
 								href="/arvore_societaria_jsf/empresa/cadastro_de_empresa.xhtml">Cadastro
 									de Empresa</a></li>
 							<li id="submenu_busca_empresa"><a
@@ -69,14 +66,16 @@
 						aria-haspopup="true" aria-expanded="false">Moeda <span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li id="submenu_cadastro_moeda"><a 
+							<li id="submenu_cadastro_moeda"><a
 								href="/arvore_societaria_jsf/moeda/cadastro_de_moeda.xhtml">Cadastro
 									de Moeda</a></li>
 							<li id="submenu_busca_moeda"><a
 								href="/arvore_societaria_jsf/moeda/busca_de_moeda.xhtml">Busca
 									de Moeda</a></li>
-							<li id="submenu_cadastro_cotacao"><a href="">Cadastro de Cotação</a></li>
-							<li id="submenu_busca_cotacao"><a href="#">Busca de Cotação</a></li>
+							<li id="submenu_cadastro_cotacao"><a href="">Cadastro de
+									Cotação</a></li>
+							<li id="submenu_busca_cotacao"><a href="#">Busca de
+									Cotação</a></li>
 						</ul></li>
 					<li id="menu_arvore"><a href="#">Árvore</a></li>
 				</ul>
@@ -90,7 +89,7 @@
 		<ui:insert name="content"></ui:insert>
 
 	</div>
-	
+
 </h:body>
 
 </html>

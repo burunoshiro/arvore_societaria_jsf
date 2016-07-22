@@ -7,9 +7,63 @@
 
 <ui:composition>
 
-<title>Cadastro de Empresa</title>
+	<ui:define name="tituloPagina">
+		Árvore Societária - Cadastro de Empresa
+	</ui:define>
+	
+	<ui:define name="scripts">
 
-<
+		<script>
+		
+			//Limpa os dados do formulário
+			function limpaEmpresa() {
+	
+				$(".btn_novo").click();
+				
+			}		
+		
+	 		$(function() {
+				
+				var mensagem = $("#mensagem").text();
+				
+				if(mensagem != "") {
+					
+					//Verifica se houve erro ao executar uma ação ou se a o campo é obrigatório
+					if("#{empresaBean.acao}" == "erro" || mensagem.match("obrigatório")) {
+						
+						//Muda a classe do div para ficar com estilo de aviso de erro
+						$("#mensagem").addClass("alert alert-warning");
+						
+					} 
+					//Verifica se a mensagem é "Escolha uma moeda"
+					else if(mensagem.match("moeda")) {
+	
+						//Muda a classe do div para ficar com estilo de warning(amarelo)
+						$("#mensagem").addClass("alert alert-info");
+						
+					}
+					else {
+						
+						//Muda a classe do div para ficar com estilo de aviso sucesso (campo em verde)
+						$("#mensagem").addClass("alert alert-success");
+						
+					}
+					
+				}
+				
+				//Limpa a empresa ao sair da tela
+				window.onbeforeunload = limpaEmpresa();
+				
+	 		})
+		
+			$(function() {
+				$('#menu_empresa').addClass('active');
+				$('#submenu_cadastro_empresa').addClass('active');
+			})
+			
+		</script>
+
+	</ui:define>
 
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="../jquery/jquery.min.js" />
@@ -33,7 +87,6 @@ body {
 	font-weight: bold;
 }
 </STYLE>
-<ui:insert
 <script type="text/javascript">
 	
 		//Limpa os dados do formulário
