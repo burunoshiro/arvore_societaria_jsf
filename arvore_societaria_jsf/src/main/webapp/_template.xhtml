@@ -12,8 +12,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 	<meta name="viewport" content="width=device-width"></meta>
 
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/arvore_societaria_jsf/bootstrap/css/bootstrap.min.css"></link>
+	<script type="text/javascript" src="/arvore_societaria_jsf/bootstrap/js/bootstrap.min.js"></script>
 
 	<title>
 		<ui:insert name="tituloPagina">
@@ -39,13 +39,13 @@
 
 	<!-- 	Menu Principal -->
 	<nav class="navbar navbar-default">
-		<div class="container">
+		<div class="container container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Árvore societária</a>
 			</div>
 			<div>
 				<ul class="nav navbar-nav">
-					<li id="menu_home"><a href="#">Home</a></li>
+					<li id="menu_home"><a href="/arvore_societaria_jsf/home.xhtml">Home</a></li>
 					<li class="dropdown" id="menu_empresa"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown" role="button"
 						aria-haspopup="true" aria-expanded="false">Empresa <span
@@ -86,7 +86,9 @@
 		<ui:insert name="content"></ui:insert>
 
 	</div>
-
+	<div id="footer">
+		<div class="container"></div>
+	</div>
 </h:body>
 
 </html>
