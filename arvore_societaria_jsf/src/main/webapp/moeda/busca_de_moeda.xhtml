@@ -2,146 +2,101 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-	<meta name="viewport" content="width=device-width"></meta>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<link rel="stylesheet"
-		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+<ui:composition template="/_template.xhtml">
 
+	<ui:define name="tituloPagina">
+		Cadastro de Moeda - Árvore Societária
+	</ui:define>
 
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
-	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<ui:define name="estilo">
+		<style type="text/css">
+#principal {
+	margin-top: 60px;
+}
 
-	<!-- <script type="text/javascript" src="../jquery/jquery.ddslick.js"></script> -->
+body {
+	padding-bottom: 70px;
+}
 
-	<title>Cadastro de Moeda - Árvore Societária</title>
-
-	<style type="text/css">
+#btn_excluir {
+	display: none;
+}
+</style>
+	</ui:define>
 	
-		#principal {
-			margin-top: 90px;
-		}
-		
-		body {
-			padding-bottom: 70px;
-		}
-		
-		#btn_excluir {
-			display: none;
-		}
-		
-	</style>
+	<ui:define name="script">
 
-	<script>
+		<script>
+			$(function() {
+				$('#menu_moeda').addClass('active');
+				$('#submenu_busca_moeda').addClass('active');
+			})
+		</script>
+
+	</ui:define>
 	
+	<ui:define name="content">
+		<!-- Tabela de moedas -->
 
-	
-	</script>
+		<div id="principal" class="container">
+			<h:form>
 
-</h:head>
-<h:body>
+				<fieldset>
+					<legend>Busca de Moeda</legend>
 
-	<!-- 	Menu Principal -->
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Árvore societária</a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#menu">
-					<SPAN class="icon-bar"></SPAN> <SPAN class="icon-bar"></SPAN> <SPAN
-						class="icon-bar"></SPAN>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse" id="menu">
-				<ul class="nav navbar-nav">
-					<li class=""><a href="#">Home</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Empresa <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="../empresa/cadastro_de_empresa.xhtml">Cadastro de Empresa</a></li>
-							<li><a href="#">Busca de Empresas</a></li>
-						</ul></li>
-					<li class="dropdown active"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Moeda <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="cadastro_de_moeda.xhtml">Cadastro de Moeda</a></li>
-
-							<li><a href="busca_de_moeda.xhtml">Busca de Moeda</a></li>
-
-							<li><a href="">Cadastro de Cotação</a></li>
-							<li><a href="#">Busca de Cotação</a></li>
-						</ul></li>
-					<li><a href="#">Árvore</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- 	Fim Menu Principal -->
-
-	<!-- Tabela de moedas -->
-
-	<div id="principal" class="container">
-		<h:form>
-
-
-			<fieldset>
-				<legend>Busca de Moeda</legend>
-
-				<div class="table-responsive">
-					<h:dataTable class="table" value="#{moedaBean.listaMoedas}"
-						var="moeda">
-						<h:column>
-							<f:facet name="header">id</f:facet>
+					<div class="table-responsive">
+						<h:dataTable class="table" value="#{moedaBean.listaMoedas}"
+							var="moeda">
+							<h:column>
+								<f:facet name="header">id</f:facet>
 						#{moeda.id}
 					</h:column>
-						<h:column>
-							<f:facet name="header">nome</f:facet>
+							<h:column>
+								<f:facet name="header">nome</f:facet>
 						#{moeda.nome}
 					</h:column>
-						<h:column>
-							<f:facet name="header">pais</f:facet>
+							<h:column>
+								<f:facet name="header">pais</f:facet>
 						#{moeda.pais}
 						</h:column>
-						<h:column>
-							<f:facet name="header">situação</f:facet>
+							<h:column>
+								<f:facet name="header">situação</f:facet>
 						#{moeda.situacao}
 					</h:column>
-						<h:column>
-							<f:facet name="header">alteração</f:facet>
-							<h:commandLink action="#{moedaBean.alterarMoeda(moeda)}">alterar</h:commandLink>
-						</h:column>
-						<h:column>
-							<f:facet name="header">exclusão</f:facet>
-							<p:commandLink value="excluir"
-								actionListener="#{moedaBean.remove(moeda)}" update="@form">
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja excluir moeda?"
-									icon="ui-icon-alert" />
-							</p:commandLink>
+							<h:column>
+								<f:facet name="header">alteração</f:facet>
+								<h:commandLink action="#{moedaBean.alterarMoeda(moeda)}">alterar</h:commandLink>
+							</h:column>
+							<h:column>
+								<f:facet name="header">exclusão</f:facet>
+								<p:commandLink value="excluir"
+									actionListener="#{moedaBean.remove(moeda)}" update="@form">
+									<p:confirm header="Confirmação"
+										message="Tem certeza que deseja excluir moeda?"
+										icon="ui-icon-alert" />
+								</p:commandLink>
 
-						</h:column>
-					</h:dataTable>
-				</div>
-			</fieldset>
-		</h:form>
+							</h:column>
+						</h:dataTable>
+					</div>
+				</fieldset>
+			</h:form>
 
-		<h:form>
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<p:commandButton value="Sim" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="Não" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			</p:confirmDialog>
-		</h:form>
-	</div>
+			<h:form>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+		</div>
 
-	<!-- Fim fim tabela de moeda -->
+		<!-- Fim fim tabela de moeda -->
+	</ui:define>
 
-</h:body>
-
+</ui:composition>
 </html>
