@@ -6,23 +6,20 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 
+	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 	<meta name="viewport" content="width=device-width"></meta>
-
-	<link rel="stylesheet"
-		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
-
 
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- <script type="text/javascript" src="jquery/jquery.ddslick.js"></script> -->
+	<title>
+		<ui:insert name="tituloPagina">
+		</ui:insert>
+	</title>
 
-	<title><ui:insert name="tituloPagina">
-		</ui:insert></title>
-
-	<ui:insert name="">
-	
 	<style type="text/css">
 		#principal {
 			margin-top: 90px;

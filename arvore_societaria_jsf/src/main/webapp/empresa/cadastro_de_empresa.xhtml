@@ -5,13 +5,37 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition>
+<ui:composition template="/_template.xhtml">
 
 	<ui:define name="tituloPagina">
 		Árvore Societária - Cadastro de Empresa
 	</ui:define>
+
+	<ui:define name="estilo">
 	
-	<ui:define name="scripts">
+		<STYLE type="text/css">
+		
+		#principal {
+			margin-top: 40px;
+		}
+		
+		body {
+			padding-bottom: 40px;
+		}
+		
+		.btn_novo {
+			margin-right: 20px;
+		}
+		
+		#mensagem {
+			list-style-type: none;
+			font-weight: bold;
+		}
+		</STYLE>
+
+	</ui:define>
+
+	<ui:define name="script">
 
 		<script>
 		
@@ -52,143 +76,81 @@
 				}
 				
 				//Limpa a empresa ao sair da tela
-				window.onbeforeunload = limpaEmpresa();
-				
-	 		})
-		
-			$(function() {
+				//window.onbeforeunload = limpaEmpresa();
+
+				//Coloca os itens do menu como active
 				$('#menu_empresa').addClass('active');
 				$('#submenu_cadastro_empresa').addClass('active');
-			})
-			
+	 		})
+		
 		</script>
 
 	</ui:define>
 
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="../jquery/jquery.min.js" />
-<SCRIPT type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></SCRIPT>
+	<ui:define name="content">
 
-<STYLE type="text/css">
-#principal {
-	margin-top: 90px;
-}
+		<!--  Form de cadastro de empresa  -->
 
-body {
-	padding-bottom: 40px;
-}
+		<div id="principal" class="container">
 
-.btn_novo {
-	margin-right: 10px;
-}
+			<h:messages id="mensagem" />
 
-#mensagem {
-	list-style-type: none;
-	font-weight: bold;
-}
-</STYLE>
-<script type="text/javascript">
-	
-		//Limpa os dados do formulário
-		function limpaEmpresa() {
+			<h:form class="form-horizontal" role="form">
 
-			$(".btn_novo").click();
-			
-		}		
-	
- 		$(function() {
-			
-			var mensagem = $("#mensagem").text();
-			
-			if(mensagem != "") {
-				
-				//Verifica se houve erro ao executar uma ação ou se a o campo é obrigatório
-				if("#{empresaBean.acao}" == "erro" || mensagem.match("obrigatório")) {
-					
-					//Muda a classe do div para ficar com estilo de aviso de erro
-					$("#mensagem").addClass("alert alert-warning");
-					
-				} 
-				//Verifica se a mensagem é "Escolha uma moeda"
-				else if(mensagem.match("moeda")) {
+				<fieldset>
+					<legend>Cadastro de Empresa</legend>
 
-					//Muda a classe do div para ficar com estilo de warning(amarelo)
-					$("#mensagem").addClass("alert alert-info");
-					
-				}
-				else {
-					
-					//Muda a classe do div para ficar com estilo de aviso sucesso (campo em verde)
-					$("#mensagem").addClass("alert alert-success");
-					
-				}
-				
-			}
-			
-			//Limpa a empresa ao sair da tela
-			window.onbeforeunload = limpaEmpresa();
-			
- 		})
-	
-	</script>
-
-</head>
-<h:body>
-
-	<!--  Form de cadastro de empresa  -->
-
-	<div id="principal" class="container">
-
-		<h:messages id="mensagem" />
-
-		<h:form class="form-horizontal" role="form">
-
-			<fieldset>
-				<legend>Cadastro de Empresa</legend>
-
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="txt_razaoSocial">Nome/Razão
-						Social: </label>
-					<div class="col-sm-7">
-						<h:inputText id="txt_razaoSocial" class="form-control"
-							value="#{empresaBean.empresa.razaoSocial}" required="true"
-							requiredMessage="Campo razão social obrigatório"></h:inputText>
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="txt_razaoSocial">Nome/Razão
+							Social: </label>
+						<div class="col-sm-7">
+							<h:inputText id="txt_razaoSocial" class="form-control"
+								value="#{empresaBean.empresa.razaoSocial}" required="true"
+								requiredMessage="Campo razão social obrigatório"></h:inputText>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="txt_pais">País:
-					</label>
-					<div class="col-sm-5">
-						<h:inputText id="txt_pais" class="form-control"
-							value="#{empresaBean.empresa.pais}" required="true"
-							requiredMessage="Campo país obrigatório"></h:inputText>
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="txt_pais">País:
+						</label>
+						<div class="col-sm-5">
+							<h:inputText id="txt_pais" class="form-control"
+								value="#{empresaBean.empresa.pais}" required="true"
+								requiredMessage="Campo país obrigatório"></h:inputText>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">Moeda: </label>
-					<div class="col-sm-3">
-						<h:selectOneMenu value="#{empresaBean.empresa.moeda}"
-							class="form-control" required="true"
-							requiredMessage="Escolha uma moeda!">
-							<f:selectItem itemLabel="Selecione uma moeda..." itemValue=""></f:selectItem>
-							<f:selectItems value="#{empresaBean.moedasSelected}" var="m"
-								itemValue="#{m}" />
-						</h:selectOneMenu>
+					<div class="form-group">
+						<label class="control-label col-sm-3">Moeda: </label>
+						<div class="col-sm-3">
+							<h:selectOneMenu value="#{empresaBean.empresa.moeda}"
+								class="form-control" required="true"
+								requiredMessage="Escolha uma moeda!">
+								<f:selectItem itemLabel="Selecione uma moeda..." itemValue=""></f:selectItem>
+								<f:selectItems value="#{empresaBean.moedasSelected}" var="m"
+									itemValue="#{m}" />
+							</h:selectOneMenu>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-10">
+					<div class="form-group">
+						<div class="col-md-10">
+						
 						<h:commandButton id="btn_salvar"
-							class="btn btn-default btn-primary pull-right"
-							actionListener="#{empresaBean.salva}" value="Salvar" />
-
+								class="btn btn-default btn-primary pull-right"
+								actionListener="#{empresaBean.salva}" value="Salvar" />
+								
+						<h:commandButton id="btn_novo" 
+							class="btn btn-default btn-primary pull-right btn_novo"
+								actionListener="#{empresaBean.novaEmpresa}" value="Novo">
+								<f:ajax render="@form"></f:ajax>
+						</h:commandButton>
+						
+						</div>
 					</div>
-				</div>
-			</fieldset>
+				</fieldset>
 
-		</h:form>
+			</h:form>
 
-	</div>
+		</div>
+	</ui:define>
 
-</ui:composition>	
+</ui:composition>
 </html>
