@@ -53,8 +53,9 @@ public class EmpresaBean {
 
 		if(empresaSelecionada != null) {
 			empresa = empresaSelecionada;
+			System.out.println("empresa: " + empresa.getRazaoSocial());
 		}
-		System.out.println("empresa: " + empresa.getRazaoSocial());
+		
 	}
 	
 	public List<SelectItem> getMoedasSelected() {

@@ -78,6 +78,8 @@
 				//Coloca os itens do menu como active
 				$('#menu_moeda').addClass('active');
 				$('#submenu_cadastro_cotacao').addClass('active');
+				
+				
 	 		})
 		
 		</script>
@@ -95,51 +97,18 @@
 			<h:form class="form-horizontal" role="form">
 
 				<fieldset>
-					<legend>Cadastro de Empresa</legend>
+					<legend>Cadastro de Cotação</legend>
 
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="txt_razaoSocial">Nome/Razão
-							Social: </label>
-						<div class="col-sm-7">
-							<h:inputText id="txt_razaoSocial" class="form-control"
-								value="#{empresaBean.empresa.razaoSocial}" required="true"
-								requiredMessage="Campo razão social obrigatório"></h:inputText>
+						<label class="control-label col-sm-3">Nome:</label>
+						<div class="col-sm-6">
+							<h:inputText class="form-control" value="#{cotacaoBean.moeda.nome}" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="txt_pais">País:
-						</label>
-						<div class="col-sm-5">
-							<h:inputText id="txt_pais" class="form-control"
-								value="#{empresaBean.empresa.pais}" required="true"
-								requiredMessage="Campo país obrigatório"></h:inputText>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-3">Moeda: </label>
-						<div class="col-sm-3">
-							<h:selectOneMenu value="#{empresaBean.empresa.moeda}"
-								class="form-control" required="true"
-								requiredMessage="Escolha uma moeda!">
-								<f:selectItem itemLabel="Selecione uma moeda..." itemValue=""></f:selectItem>
-								<f:selectItems value="#{empresaBean.moedasSelected}" var="m"
-									itemValue="#{m}" />
-							</h:selectOneMenu>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-10">
-						
-						<h:commandButton id="btn_salvar"
-								class="btn btn-default btn-primary pull-right"
-								actionListener="#{empresaBean.salva}" value="Salvar" />
-								
-						<h:commandButton id="btn_novo" 
-							class="btn btn-default btn-primary pull-right btn_novo"
-								actionListener="#{empresaBean.novaEmpresa}" value="Novo">
-								<f:ajax render="@form"></f:ajax>
-						</h:commandButton>
-						
+						<label class="control-label col-sm-3">País:</label>
+						<div class="col-sm-4">
+							<h:inputText class="form-control" value="#{cotacaoBean.moeda.pais}" />
 						</div>
 					</div>
 				</fieldset>

@@ -35,8 +35,9 @@ public class MoedaBean implements Serializable{
 		Moeda moedaSelecionada = (Moeda) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("moedaSelecionada");
 		if(moedaSelecionada != null) {
 			moeda = moedaSelecionada;
+			System.out.println("moeda: " + moeda.getNome());
 		}
-		System.out.println("moeda: " + moeda.getNome());
+		
 	}
 
 	public String getMensagem() {
