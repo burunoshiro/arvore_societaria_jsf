@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/_template.xhtml">
+
+	<ui:define name="tituloPagina">
+		Árvore Societária - Cadastro de Cotação
+	</ui:define>
+
+	<ui:define name="estilo">
+	
+		<STYLE type="text/css">
+		
+		#principal {
+			margin-top: 40px;
+		}
+		
+		body {
+			padding-bottom: 40px;
+		}
+		
+		.btn_novo {
+			margin-right: 20px;
+		}
+		
+		#mensagem {
+			list-style-type: none;
+			font-weight: bold;
+		}
+		</STYLE>
+
+	</ui:define>
+
+	<ui:define name="script">
+
+		<script>
+		
+			//Limpa os dados do formulário
+			function limpaCotacao() {
+	
+				$(".btn_novo").click();
+				
+			}		
+		
+	 		$(function() {
+				
+				var mensagem = $("#mensagem").text();
+				
+				if(mensagem != "") {
+					
+					//Verifica se houve erro ao executar uma ação ou se a o campo é obrigatório
+					if("#{empresaBean.acao}" == "erro" || mensagem.match("obrigatório")) {
+						
+						//Muda a classe do div para ficar com estilo de aviso de erro
+						$("#mensagem").addClass("alert alert-warning");
+						
+					} 
+					//Verifica se a mensagem é "Escolha uma moeda"
+					else if(mensagem.match("moeda")) {
+	
+						//Muda a classe do div para ficar com estilo de warning(amarelo)
+						$("#mensagem").addClass("alert alert-info");
+						
+					}
+					else {
+						
+						//Muda a classe do div para ficar com estilo de aviso sucesso (campo em verde)
+						$("#mensagem").addClass("alert alert-success");
+						
+					}
+					
+				}
+
+				//Coloca os itens do menu como active
+				$('#menu_moeda').addClass('active');
+				$('#submenu_cadastro_cotacao').addClass('active');
+	 		})
+		
+		</script>
+
+	</ui:define>
+
+	<ui:define name="content">
+
+		<!--  Form de cadastro de empresa  -->
+
+		<div id="principal" class="container">
+
+			<h:messages id="mensagem" />
+
+			<h:form class="form-horizontal" role="form">
+
+				<fieldset>
+					<legend>Cadastro de Empresa</legend>
+
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="txt_razaoSocial">Nome/Razão
+							Social: </label>
+						<div class="col-sm-7">
+							<h:inputText id="txt_razaoSocial" class="form-control"
+								value="#{empresaBean.empresa.razaoSocial}" required="true"
+								requiredMessage="Campo razão social obrigatório"></h:inputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="txt_pais">País:
+						</label>
+						<div class="col-sm-5">
+							<h:inputText id="txt_pais" class="form-control"
+								value="#{empresaBean.empresa.pais}" required="true"
+								requiredMessage="Campo país obrigatório"></h:inputText>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-3">Moeda: </label>
+						<div class="col-sm-3">
+							<h:selectOneMenu value="#{empresaBean.empresa.moeda}"
+								class="form-control" required="true"
+								requiredMessage="Escolha uma moeda!">
+								<f:selectItem itemLabel="Selecione uma moeda..." itemValue=""></f:selectItem>
+								<f:selectItems value="#{empresaBean.moedasSelected}" var="m"
+									itemValue="#{m}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-10">
+						
+						<h:commandButton id="btn_salvar"
+								class="btn btn-default btn-primary pull-right"
+								actionListener="#{empresaBean.salva}" value="Salvar" />
+								
+						<h:commandButton id="btn_novo" 
+							class="btn btn-default btn-primary pull-right btn_novo"
+								actionListener="#{empresaBean.novaEmpresa}" value="Novo">
+								<f:ajax render="@form"></f:ajax>
+						</h:commandButton>
+						
+						</div>
+					</div>
+				</fieldset>
+
+			</h:form>
+
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
