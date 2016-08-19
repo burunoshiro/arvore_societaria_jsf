@@ -153,7 +153,7 @@ public class EmpresaBean {
 			}
 		}
 
-		return "/empresa/cadastro_de_empresa?faces-redirect=true";
+		return "/views/empresa/cadastro_de_empresa?faces-redirect=true";
 	}
 
 	public void novaEmpresa(){

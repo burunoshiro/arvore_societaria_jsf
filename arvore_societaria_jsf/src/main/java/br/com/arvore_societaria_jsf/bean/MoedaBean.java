@@ -131,7 +131,7 @@ public class MoedaBean implements Serializable{
 			}
 		}
 		
-		return "/moeda/cadastro_de_moeda?faces-redirect=true";
+		return "/views/moeda/cadastro_de_moeda?faces-redirect=true";
 	}
 
 	public void novaMoeda(){
